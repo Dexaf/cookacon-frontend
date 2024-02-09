@@ -22,7 +22,12 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@store/action":["./src/app/store/app-state.action.ts"],
+      "@store/reducer":["./src/app/store/app-state.reducer.ts"],
+      "@store/interfaces":["./src/app/store/app-state.interface.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
