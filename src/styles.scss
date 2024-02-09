@@ -15,3 +15,7 @@ h4,
 h5 {
   color: $main-text-color;
 }
+
+.animated {
+  transition: 0.25s;
+}
