@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as storeActions from '@store/action';
+import * as storeActions from '@store/actions';
 import { AppState } from '@store/interfaces';
 
 @Component({

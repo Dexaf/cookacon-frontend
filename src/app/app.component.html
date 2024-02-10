@@ -1,1 +1,6 @@
 <app-nav-bar></app-nav-bar>
+@if (isLoginModalOpened$ | async) {
+  @defer (when isLoginModalOpened$|async) {
+    login modal opened
+  }
+}

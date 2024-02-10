@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { AppState } from "./app-state.interface";
-import * as appStateAction from "@store/action"
+import * as appStateAction from "./app-state.actions"
 
 export const initialState: AppState = {
   isLoginModalOpened: false,

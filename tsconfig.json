@@ -24,9 +24,10 @@
       "dom"
     ],
     "paths": {
-      "@store/action":["./src/app/store/app-state.action.ts"],
+      "@store/actions":["./src/app/store/app-state.actions.ts"],
       "@store/reducer":["./src/app/store/app-state.reducer.ts"],
-      "@store/interfaces":["./src/app/store/app-state.interface.ts"]
+      "@store/interfaces":["./src/app/store/app-state.interface.ts"],
+      "@store/selectors":["./src/app/store/app-state.selectors.ts"]
     }
   },
   "angularCompilerOptions": {
