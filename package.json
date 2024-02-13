@@ -24,6 +24,7 @@
     "@ngneat/transloco": "^6.0.4",
     "@ngrx/store": "^17.1.0",
     "@ngrx/store-devtools": "^17.1.0",
+    "angular-feather": "^6.5.1",
     "express": "^4.18.2",
     "feather-icons": "^4.29.1",
     "rxjs": "~7.8.0",
