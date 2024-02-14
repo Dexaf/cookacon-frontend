@@ -5,6 +5,9 @@ import { AppState } from '@store/interfaces';
 import { Store } from '@ngrx/store';
 import * as storeSelectors from '@store/selectors';
 import { CommonModule } from '@angular/common';
+import { ModalWrapperComponent } from './components/modal-wrapper/modal-wrapper.component';
+import { closeLoginModal } from '@store/actions';
+import { IconsModule } from './icons.module';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +17,17 @@ import { CommonModule } from '@angular/common';
   imports: [
     RouterOutlet,
     NavBarComponent,
-    CommonModule
+    ModalWrapperComponent,
+    CommonModule,
+    IconsModule
   ]
 })
 export class AppComponent {
   store = inject(Store<AppState>)
   isLoginModalOpened$ = this.store.select(storeSelectors.isLoginModalOpened$);
   isSigninModalOpened$ = this.store.select(storeSelectors.isSigninModalOpened$);
+
+  closeLoginModal() {
+    this.store.dispatch(closeLoginModal());
+  }
 }

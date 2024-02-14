@@ -1,0 +1,21 @@
+<div class="modal-cloak clickable full-screen flex-center-container" 
+  (click)="closeModal()">
+</div>
+<section class="modal-container {{ modalSize + '-width' }}">
+  <div class="modal-top">
+    <i-feather name="x" 
+      class="md-icon stroke-second clickable animated slow" 
+      (click)="closeModal()">
+    </i-feather>
+  </div>
+  <div class="modal-body" style="padding: 2rem 2rem">
+    <ng-content select="[body]"></ng-content>
+  </div>
+  @if (hasFooter) {
+    @defer (when hasFooter) {
+      <div class="modal-footer">
+        <ng-content select="[footer]"></ng-content>
+      </div>
+    }
+  }
+</section>
