@@ -6,6 +6,11 @@ nav {
   align-items: center;
   justify-content: center;
 
+  * {
+    font-family: 'Quicksand';
+    font-display: swap;
+  }
+
   div {
     display: flex;
     width: 75vw;

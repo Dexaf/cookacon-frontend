@@ -1,1 +1,8 @@
-{}
+{
+  "signInModal":{
+    "title":"Registrazione",
+    "description":"Con un account cookacon potrai <b>mostrare le tue ricette 😋</b>, <b>seguire i tuoi cuochi cookacon preferiti 🧑‍🍳</b> e magari <b>diventare tu il cuoco cookacon preferito di qualcun'altro 😎</b><br>La community ti aspetta!",
+    "passwordCopy":"Ripeti password",
+    "action":"Registrati"
+  }
+}

@@ -1,13 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "./layout/nav-bar/nav-bar.component";
-import { AppState } from '@store/interfaces';
-import { Store } from '@ngrx/store';
-import * as storeSelectors from '@store/selectors';
 import { CommonModule } from '@angular/common';
-import { ModalWrapperComponent } from './components/modal-wrapper/modal-wrapper.component';
-import { closeLoginModal } from '@store/actions';
-import { IconsModule } from './icons.module';
+import { AuthModalsContainerComponent } from './components/auth-modals-container/auth-modals-container.component';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +12,10 @@ import { IconsModule } from './icons.module';
   imports: [
     RouterOutlet,
     NavBarComponent,
-    ModalWrapperComponent,
-    CommonModule,
-    IconsModule
+    AuthModalsContainerComponent,
+    CommonModule
   ]
 })
 export class AppComponent {
-  store = inject(Store<AppState>)
-  isLoginModalOpened$ = this.store.select(storeSelectors.isLoginModalOpened$);
-  isSigninModalOpened$ = this.store.select(storeSelectors.isSigninModalOpened$);
 
-  closeLoginModal() {
-    this.store.dispatch(closeLoginModal());
-  }
 }

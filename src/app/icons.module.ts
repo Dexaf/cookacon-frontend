@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
-import { X } from 'angular-feather/icons';
+import { Key, Mail, Repeat, User, X } from 'angular-feather/icons';
 
 const icons = {
-  X
+  X,
+  Mail,
+  User,
+  Key,
+  Repeat
 }
 
 @NgModule({
