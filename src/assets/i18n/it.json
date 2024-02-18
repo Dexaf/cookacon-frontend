@@ -1,8 +1,20 @@
 {
-  "signInModal":{
-    "title":"Registrazione",
-    "description":"Con un account cookacon potrai <b>mostrare le tue ricette 😋</b>, <b>seguire i tuoi cuochi cookacon preferiti 🧑‍🍳</b> e magari <b>diventare tu il cuoco cookacon preferito di qualcun'altro 😎</b><br>La community ti aspetta!",
-    "passwordCopy":"Ripeti password",
-    "action":"Registrati"
+  "signInModal": {
+    "title": "Registrazione",
+    "description": "Con un account cookacon potrai <b>mostrare le tue ricette 😋</b>, <b>seguire i tuoi cuochi cookacon preferiti 🧑‍🍳</b> e magari <b>diventare tu il cuoco cookacon preferito di qualcun'altro 😎</b><br>La community ti aspetta!",
+    "passwordCopy": "Ripeti password",
+    "action": "Registrati",
+    "errors": {
+      "email": "Inserisci una email valida.",
+      "username": "Lo username deve essere lungo almeno 4 caratteri",
+      "password": {
+        "hasMinLength": "La password deve essere lunga almeno 4 caratteri",
+        "hasSpecialCharacters": "La password deve contenere almeno un carattere speciale (!,@,#,$...)",
+        "hasNumbers": "La password deve contenere almeno un carattere numerico (1,2,3,4...)",
+        "hasUpperCase": "La password deve contenere almeno una lettera maiuscola (A,B,C,D...)",
+        "hasLowerCase": "La password deve contenere almeno una lettera minuscola (a,b,c,d...)"
+      },
+      "passwordCopy": "Le password non corrispondono"
+    }
   }
 }

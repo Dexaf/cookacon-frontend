@@ -34,7 +34,8 @@ h5 {
   font-size: 3rem;
 }
 
-p{
+p,
+li {
   font-size: 1.3rem;
   font-family: "Quicksand";
 }
@@ -149,8 +150,13 @@ i-feather {
 
 form {
   section {
-    div {
-      margin: 2rem 1rem;
+    .entryContainer {
+      margin: 1.5rem 1rem;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+    .inputContainer {
       display: flex;
       column-gap: 0.8rem;
       align-items: center;
@@ -172,16 +178,21 @@ form {
         border-width: 0 0 2px 0;
         border-color: gray;
         background-color: rgba(0, 102, 255, 0.219);
-      }
+        &.ng-invalid.ng-dirty.ng-touched {
+          background-color: rgba(255, 0, 0, 0.219);
+        }
 
-      & > input.error {
-        background-color: rgba(255, 0, 0, 0.219);
-      }
-
-      & > input.correct {
-        background-color: rgba(0, 255, 8, 0.219);
+        &.ng-dirty.ng-touched.ng-valid {
+          background-color: rgba(0, 255, 8, 0.219);
+        }
       }
     }
+  }
+
+  button:disabled{
+    opacity: 0.5;
+    color: lightgray;
+    background-color: gray;
   }
 }
 
@@ -219,6 +230,10 @@ form {
   }
 }
 
+.errorMessage {
+  color: red;
+}
+
 @media only screen and (max-width: 768px) {
   .lg-width {
     width: 100vw;
@@ -251,7 +266,7 @@ form {
   .flex-center-container {
     &.buttons {
       flex-direction: column;
-      &>button{
+      & > button {
         margin-bottom: 0.5rem;
       }
     }
