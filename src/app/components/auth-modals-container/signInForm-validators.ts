@@ -23,7 +23,6 @@ export const isStrongPassword = (controlForm: FormControl): ValidationErrors | n
 }
 
 export const arePasswordsEquals = (group: AbstractControl): ValidationErrors | null => {
-  debugger
   const pass: string | null = group.get('password')?.value;
   const confirmPass: string | null = group.get('passwordCopy')?.value
   if (pass !== null && confirmPass !== null && pass === confirmPass)
