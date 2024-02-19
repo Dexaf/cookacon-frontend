@@ -7,9 +7,10 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-
+  //services
   http = inject(HttpClient);
 
+  //methods
   signIn(userData: signInDtoOut) {
     const url = `${environment.providerUrl}/${environment.endpoints.auth.signin}`
     this.http.post(url, userData).subscribe();  
