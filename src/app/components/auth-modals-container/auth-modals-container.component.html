@@ -114,7 +114,6 @@
               <i-feather name="repeat" class="md-icon stroke-second" />
               {{ "signInModal.passwordCopy" | transloco }}
             </label>
-            <!-- TODO: l'input non ottiene la class ng-invalid -->
             <input type="password" name="passwordCopy" id="passwordCopy" formControlName="passwordCopy"/>
           </div>
           @if(signInForm.get('passwordCopy')?.errors && 

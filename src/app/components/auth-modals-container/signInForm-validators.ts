@@ -28,6 +28,8 @@ export const arePasswordsEquals = (group: AbstractControl): ValidationErrors | n
   const confirmPass: string | null = group.get('passwordCopy')?.value
   if (pass !== null && confirmPass !== null && pass === confirmPass)
     return null
-  else
+  else {
+    group.get('passwordCopy')?.setErrors({ passwordAreEquals: false })
     return { passwordAreEquals: false }
+  }
 }
