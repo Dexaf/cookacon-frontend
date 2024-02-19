@@ -1,6 +1,5 @@
 import { AbstractControl, FormControl, ValidationErrors } from "@angular/forms"
 
-
 export const isStrongPassword = (controlForm: FormControl): ValidationErrors | null => {
   const password: string = controlForm.value;
 

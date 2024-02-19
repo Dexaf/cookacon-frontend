@@ -7,8 +7,7 @@ import { ModalWrapperComponent } from '../modal-wrapper/modal-wrapper.component'
 import { IconsModule } from '../../icons.module';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { arePasswordsEquals, isStrongPassword } from './signInForm-validators';
+import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 
 @Component({
   selector: 'app-auth-modals-container',
@@ -18,7 +17,7 @@ import { arePasswordsEquals, isStrongPassword } from './signInForm-validators';
     IconsModule,
     CommonModule,
     TranslocoModule,
-    ReactiveFormsModule
+    SignInFormComponent
   ],
   templateUrl: './auth-modals-container.component.html',
   styleUrls: ['./auth-modals-container.component.scss', '../../../styles.scss']
@@ -26,20 +25,10 @@ import { arePasswordsEquals, isStrongPassword } from './signInForm-validators';
 export class AuthModalsContainerComponent {
   //services
   store = inject(Store<AppState>)
-  formBuilder = inject(FormBuilder)
+
   //vars
   isLoginModalOpened$ = this.store.select(storeSelectors.isLoginModalOpened$);
   isSigninModalOpened$ = this.store.select(storeSelectors.isSigninModalOpened$);
-
-  signInForm = this.formBuilder.group({
-    email: ['', [Validators.email, Validators.required]],
-    username: ['', [Validators.minLength(4), Validators.required]],
-    password: ['', [isStrongPassword, Validators.required]],
-    passwordCopy: ['', [Validators.required]]
-  },
-  {
-      validators: arePasswordsEquals
-  })
 
   //methods
   closeLoginModal() {
