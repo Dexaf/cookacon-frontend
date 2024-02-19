@@ -3,104 +3,148 @@
 </h1>
 <p [innerHTML]="'signInModal.description' | transloco"></p>
 <form [formGroup]="signInForm" (ngSubmit)="submitSignInForm()">
-  <section>
-    <!-- EMAIL -->
-    <div class="entryContainer">
-      <div class="inputContainer">
-        <label for="email">
-          <i-feather name="mail" class="md-icon stroke-second" />
-          Email
-        </label>
-        <input type="email" name="email" id="email" formControlName="email"/>
-      </div>
-      @if(signInForm.get('email')?.errors && 
-          signInForm.get('email')?.touched && 
-          signInForm.get('email')?.dirty){
-        <ul class="errorContainer">
-          <li class="errorMessage m-0">{{"signInModal.errors.email" | transloco}}</li>
-        </ul>
-      } 
+  <!-- EMAIL -->
+  <div class="entryContainer">
+    <div class="inputContainer">
+      <label for="email">
+        <i-feather name="mail" class="md-icon stroke-second" />
+        Email
+      </label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        formControlName="email"
+        [readonly]="signInReqLoading"/>
     </div>
-    <!-- USERNAME -->
-    <div class="entryContainer">
-      <div class="inputContainer">
-        <label for="email">
-          <i-feather name="user" class="md-icon stroke-second" />
-          Username
-        </label>
-        <input type="text" name="username" id="username" formControlName="username"/>
-      </div>
-      @if(signInForm.get('username')?.errors && 
-          signInForm.get('username')?.touched &&
-          signInForm.get('username')?.dirty){
-        <ul class="errorContainer">
-          <li class="errorMessage m-0">{{"signInModal.errors.username" | transloco}}</li>
-        </ul>
-      } 
+    @if (signInForm.get("email")?.errors &&
+        signInForm.get("email")?.touched &&
+        signInForm.get("email")?.dirty) {
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "signInModal.errors.email" | transloco }}
+        </li>
+      </ul>
+    }
+  </div>
+  <!-- USERNAME -->
+  <div class="entryContainer">
+    <div class="inputContainer">
+      <label for="email">
+        <i-feather name="user" class="md-icon stroke-second" />
+        Username
+      </label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        formControlName="username"
+        [readonly]="signInReqLoading"/>
     </div>
-    <!-- PASSWORD -->
-    <div class="entryContainer">
-      <div class="inputContainer">
-        <label for="password">
-          <i-feather name="key" class="md-icon stroke-second" />
-          Password
-        </label>
-        <input type="password" name="password" id="password" formControlName="password"/>
-      </div>
-      @if(signInForm.get('password')?.errors && 
-          signInForm.get('password')?.touched && 
-          signInForm.get('password')?.dirty){
-        <ul class="errorContainer">
-          @if(!signInForm.get('password')?.errors?.["hasMinLength"]) {
-            <li class="errorMessage m-0">
-              {{'signInModal.errors.password.hasMinLength' | transloco}}
-            </li>
-          }
-          @if(!signInForm.get('password')?.errors?.["hasSpecialCharacters"]) {
-            <li class="errorMessage m-0">
-              {{'signInModal.errors.password.hasSpecialCharacters' | transloco}}
-            </li>
-          }
-          @if(!signInForm.get('password')?.errors?.["hasNumbers"]) {
-            <li class="errorMessage m-0">
-              {{'signInModal.errors.password.hasNumbers' | transloco}}
-            </li>
-          }
-          @if(!signInForm.get('password')?.errors?.["hasUpperCase"]) {
-            <li class="errorMessage m-0">
-              {{'signInModal.errors.password.hasUpperCase' | transloco}}
-            </li>
-          }
-          @if(!signInForm.get('password')?.errors?.["hasLowerCase"]) {
-            <li class="errorMessage m-0">
-              {{'signInModal.errors.password.hasLowerCase' | transloco}}
-            </li>
-          }
-        </ul>
-      } 
+    @if (signInForm.get("username")?.errors &&
+        signInForm.get("username")?.touched &&
+        signInForm.get("username")?.dirty) {
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "signInModal.errors.username" | transloco }}
+        </li>
+      </ul>
+    }
+  </div>
+  <!-- PASSWORD -->
+  <div class="entryContainer">
+    <div class="inputContainer">
+      <label for="password">
+        <i-feather name="key" class="md-icon stroke-second" />
+        Password
+      </label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        formControlName="password"
+        [readonly]="signInReqLoading"/>
     </div>
-    <!-- PASSWORD COPY -->
-    <div class="entryContainer">
-      <div class="inputContainer">
-        <label for="passwordCopy">
-          <i-feather name="repeat" class="md-icon stroke-second" />
-          {{ "signInModal.passwordCopy" | transloco }}
-        </label>
-        <input type="password" name="passwordCopy" id="passwordCopy" formControlName="passwordCopy"/>
-      </div>
-      @if(signInForm.get('passwordCopy')?.errors && 
-          signInForm.get('passwordCopy')?.touched && 
-          signInForm.get('passwordCopy')?.dirty){
-        <ul class="errorContainer">
-          <li class="errorMessage m-0">{{"signInModal.errors.passwordCopy" | transloco}}</li>
-        </ul>
+    @if (signInForm.get("password")?.errors &&
+        signInForm.get("password")?.touched &&
+        signInForm.get("password")?.dirty) {
+      <ul class="errorContainer">
+        @if (!signInForm.get("password")?.errors?.["hasMinLength"]) {
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.password.hasMinLength" | transloco }}
+          </li>
+        }
+        @if (!signInForm.get("password")?.errors?.["hasSpecialCharacters"]) {
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.password.hasSpecialCharacters" | transloco }}
+          </li>
+        }
+        @if (!signInForm.get("password")?.errors?.["hasNumbers"]) {
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.password.hasNumbers" | transloco }}
+          </li>
+        }
+        @if (!signInForm.get("password")?.errors?.["hasUpperCase"]) {
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.password.hasUpperCase" | transloco }}
+          </li>
+        }
+        @if (!signInForm.get("password")?.errors?.["hasLowerCase"]) {
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.password.hasLowerCase" | transloco }}
+          </li>
+        }
+      </ul>
+    }
+  </div>
+  <!-- PASSWORD COPY -->
+  <div class="entryContainer">
+    <div class="inputContainer">
+      <label for="passwordCopy">
+        <i-feather name="repeat" class="md-icon stroke-second" />
+        {{ "signInModal.passwordCopy" | transloco }}
+      </label>
+      <input
+        type="password"
+        name="passwordCopy"
+        id="passwordCopy"
+        formControlName="passwordCopy"
+        [readonly]="signInReqLoading"
+      />
+    </div>
+    @if (signInForm.get("passwordCopy")?.errors &&
+        signInForm.get("passwordCopy")?.touched &&
+        signInForm.get("passwordCopy")?.dirty) {
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "signInModal.errors.passwordCopy" | transloco }}
+        </li>
+      </ul>
+    }
+  </div>
+  <hr style="margin-bottom: 2rem" />
+  <section class="flex-center-container buttons">
+    <!-- SIGN IN BUTTON -->
+    <button
+      class="button-primary animated"
+      style="position: relative"
+      [disabled]="!signInForm.valid"
+      type="submit">
+      {{ "signInModal.action" | transloco | uppercase }}
+      @if (signInReqLoading) {
+        <div class="spinner-container">
+          <svg class="spinner" viewBox="0 0 50 50">
+            <circle
+              class="path"
+              cx="25"
+              cy="25"
+              r="20"
+              fill="none"
+              stroke-width="5">
+            </circle>
+          </svg>
+        </div>
       }
-    </div>
-    <hr style="margin-bottom: 2rem" />
-    <section class="flex-center-container buttons">
-      <button class="button-primary animated" [disabled]="!signInForm.valid" type="submit">
-        {{ "signInModal.action" | transloco | uppercase }}
-      </button>
-    </section>
+    </button>
   </section>
 </form>

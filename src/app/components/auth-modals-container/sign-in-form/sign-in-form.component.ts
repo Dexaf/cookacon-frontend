@@ -7,6 +7,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { IconsModule } from '../../../icons.module';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -35,16 +36,21 @@ export class SignInFormComponent {
   }, {
     validators: arePasswordsEquals
   })
+  signInReqLoading: boolean = false;
 
   //methods
   submitSignInForm() {
-    this.authService.signIn(
-      {
-        email: this.signInForm.controls.email.value!,
-        username: this.signInForm.controls.username.value!,
-        password: this.signInForm.controls.password.value!,
-        passwordCopy: this.signInForm.controls.passwordCopy.value!
-      }
-    )
+    this.signInReqLoading = true;
+    
+    this.authService.signIn({
+      email: this.signInForm.controls.email.value!,
+      username: this.signInForm.controls.username.value!,
+      password: this.signInForm.controls.password.value!,
+      passwordCopy: this.signInForm.controls.passwordCopy.value!
+    })
+      .pipe(finalize(() => { this.signInReqLoading = false; }))
+      .subscribe((res) => {
+        alert("Benvenuto " + res.username);
+      })
   }
 }
