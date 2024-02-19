@@ -26,6 +26,7 @@ export class SignInFormComponent {
   formBuilder = inject(FormBuilder);
   authService = inject(AuthService);
 
+  //vars
   signInForm = this.formBuilder.group({
     email: ['', [Validators.email, Validators.required]],
     username: ['', [Validators.minLength(4), Validators.required]],
