@@ -41,7 +41,8 @@ export class SignInFormComponent {
       {
         email: this.signInForm.controls.email.value!,
         username: this.signInForm.controls.username.value!,
-        password: this.signInForm.controls.password.value! //TODO - HASH PASSWORD UTILITY
+        password: this.signInForm.controls.password.value!,
+        passwordCopy: this.signInForm.controls.passwordCopy.value!
       }
     )
   }

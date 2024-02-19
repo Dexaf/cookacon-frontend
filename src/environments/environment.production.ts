@@ -1,3 +1,9 @@
 export const environment = {
-  baseUrl: ""
+  baseUrl: "",
+  providerUrl: "http://localhost:3000",
+  endpoints: {
+    auth: {
+      signin: "auth/signin"
+    }
+  }
 };
