@@ -24,12 +24,11 @@
     </app-modal-wrapper>
   }
 }
-<!-- <app-modal-wrapper [modalSize]="'sm'" (onModalClose)="closeLoginModal()">
-  <app-sign-in-form body></app-sign-in-form>
-</app-modal-wrapper> -->
+
+{{ isSigninModalOpened$ | async }}
 @if (isSigninModalOpened$ | async) {
   @defer (when isSigninModalOpened$ | async) {
-    <app-modal-wrapper [modalSize]="'sm'" (onModalClose)="closeLoginModal()">
+    <app-modal-wrapper [modalSize]="'sm'" (onModalClose)="closeSigninModal()">
       <app-sign-in-form body></app-sign-in-form>
     </app-modal-wrapper>
   }
