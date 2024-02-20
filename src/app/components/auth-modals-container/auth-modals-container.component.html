@@ -25,7 +25,6 @@
   }
 }
 
-{{ isSigninModalOpened$ | async }}
 @if (isSigninModalOpened$ | async) {
   @defer (when isSigninModalOpened$ | async) {
     <app-modal-wrapper [modalSize]="'sm'" (onModalClose)="closeSigninModal()">
