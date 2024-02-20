@@ -24,56 +24,13 @@
     </app-modal-wrapper>
   }
 }
-<app-modal-wrapper [modalSize]="'sm'" (onModalClose)="closeLoginModal()">
+<!-- <app-modal-wrapper [modalSize]="'sm'" (onModalClose)="closeLoginModal()">
   <app-sign-in-form body></app-sign-in-form>
-</app-modal-wrapper>
+</app-modal-wrapper> -->
 @if (isSigninModalOpened$ | async) {
   @defer (when isSigninModalOpened$ | async) {
     <app-modal-wrapper [modalSize]="'sm'" (onModalClose)="closeLoginModal()">
-      <ng-container body>
-        <h1 style="text-align: center" class="m-0">
-          {{ "signInModal.title" | transloco }}
-        </h1>
-        <p [innerHTML]="'signInModal.description' | transloco"></p>
-        <form>
-          <section>
-            <div>
-              <label for="email">
-                <i-feather name="mail" class="md-icon stroke-second" />
-                Email:
-              </label>
-              <input type="email" name="email" id="email" />
-            </div>
-            <div>
-              <label for="email">
-                <i-feather name="user" class="md-icon stroke-second" />
-                Username:
-              </label>
-              <input type="text" name="username" id="username" />
-            </div>
-            <div>
-              <label for="password">
-                <i-feather name="key" class="md-icon stroke-second" />
-                Password:
-              </label>
-              <input type="password" name="password" id="password" />
-            </div>
-            <div>
-              <label for="passwordCopy">
-                <i-feather name="repeat" class="md-icon stroke-second" />
-                {{ "signInModal.passwordCopy" | transloco }}:
-              </label>
-              <input type="password" name="passwordCopy" id="passwordCopy" />
-            </div>
-          </section>
-          <hr style="margin-bottom: 2rem" />
-          <section class="flex-center-container buttons">
-            <button class="button-primary animated">
-              {{ "signInModal.action" | transloco | uppercase }}
-            </button>
-          </section>
-        </form>
-      </ng-container>
+      <app-sign-in-form body></app-sign-in-form>
     </app-modal-wrapper>
   }
 }
