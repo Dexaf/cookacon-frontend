@@ -1,0 +1,68 @@
+<h1 style="text-align: center" class="m-0">
+  {{ "logInModal.title" | transloco }}
+</h1>
+<p [innerHTML]="'logInModal.description' | transloco"></p>
+<form [formGroup]="logInForm" (ngSubmit)="submitLogInForm()">
+  <!-- USERNAME -->
+  <div class="entryContainer">
+    <div class="inputContainer">
+      <label for="username">
+        <i-feather name="user" class="md-icon stroke-second"></i-feather>
+        Username
+      </label>
+      <input type="text" id="username" formControlName="username" />
+    </div>
+    @if (logInForm.get("username")?.errors &&
+        logInForm.get("username")?.touched &&
+        logInForm.get("username")?.dirty) {
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "genericErrors.required" | transloco }}
+        </li>
+      </ul>
+    }
+  </div>
+  <!-- PASSWORD -->
+  <div class="entryContainer">
+    <div class="inputContainer">
+      <label for="password">
+        <i-feather name="key" class="md-icon stroke-second"></i-feather>
+        Password
+      </label>
+      <input type="password" id="password" formControlName="password" />
+    </div>
+    @if (logInForm.get("password")?.errors &&
+        logInForm.get("password")?.touched &&
+        logInForm.get("password")?.dirty) {
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "genericErrors.required" | transloco }}
+        </li>
+      </ul>
+    }
+  </div>
+  <hr style="margin-bottom: 2rem" />
+  <section class="flex-center-container buttons">
+    <button 
+      class="button-primary animated"
+      style="position: relative"
+      [disabled]="!logInForm.valid"
+      type="submit">
+      {{ "logInModal.action" | transloco }}
+      @if (logInReqLoading) {
+        <div class="spinner-container">
+          <svg class="spinner" viewBox="0 0 50 50">
+            <circle
+              class="path"
+              cx="25"
+              cy="25"
+              r="20"
+              fill="none"
+              stroke-width="5"
+            ></circle>
+          </svg>
+        </div>
+      }
+    </button>
+  </section>
+</form>

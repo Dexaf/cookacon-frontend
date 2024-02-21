@@ -5,7 +5,6 @@
     "passwordCopy": "Ripeti password",
     "action": "Registrati",
     "errors": {
-      "email": "Inserisci una email valida.",
       "username": "Lo username deve essere lungo almeno 4 caratteri",
       "password": {
         "hasMinLength": "La password deve essere lunga almeno 4 caratteri",
@@ -19,6 +18,14 @@
     "success": {
       "title": "Grazie per esserti iscritto!",
       "body": "A breve verrai diretto alla tua pagina di profilo"
+    }
+  },
+  "logInModal": {
+    "title": "Accesso",
+    "description": "Ci stavi mancando! Entra e condividi con noi le tue nuove idee culinarie!😋",
+    "action": "Accedi",
+    "success": {
+      "title": "Stai per essere mandato al tuo profilo..."
     }
   },
   "errorCodes": {
@@ -35,7 +42,12 @@
       "MISSING_PASSWORD": "Manca la password.",
       "SHORT_PASSWORD": "Password troppo corta.",
       "MISSING_PASSWORD_COPY": "Devi confermare la password.",
-      "PASSWORDS_NOT_EQUAL": "Le password non corrispondono."
+      "PASSWORDS_NOT_EQUAL": "Le password non corrispondono.",
+      "USER_NO_MATCH":"Lo user non sembra esistere.",
+      "WRONG_PASSWORD":"La password non e' corretta."
     }
+  },
+  "genericErrors": {
+    "required": "Il campo non puo' essere vuoto."
   }
 }

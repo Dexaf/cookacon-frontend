@@ -3,7 +3,8 @@ export const environment = {
   providerUrl: "http://localhost:3000",
   endpoints: {
     auth: {
-      signin: "auth/signin"
+      signin: "auth/signin",
+      login: "auth/login"
     }
   }
 };

@@ -8,6 +8,7 @@ import { IconsModule } from '../../icons.module';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
+import { LogInFormComponent } from './log-in-form/log-in-form.component';
 
 @Component({
   selector: 'app-auth-modals-container',
@@ -17,7 +18,8 @@ import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
     IconsModule,
     CommonModule,
     TranslocoModule,
-    SignInFormComponent
+    SignInFormComponent,
+    LogInFormComponent
   ],
   templateUrl: './auth-modals-container.component.html',
   styleUrls: ['./auth-modals-container.component.scss', '../../../styles.scss']

@@ -33,7 +33,6 @@ export class SignInFormComponent {
 
   //vars
   signInForm = this.formBuilder.group({
-    email: ['', [Validators.email, Validators.required]],
     username: ['', [Validators.minLength(4), Validators.required]],
     password: ['', [isStrongPassword, Validators.required]],
     passwordCopy: ['', [Validators.required]]
@@ -47,7 +46,6 @@ export class SignInFormComponent {
     this.signInReqLoading = true;
 
     this.authService.signIn({
-      email: this.signInForm.controls.email.value!,
       username: this.signInForm.controls.username.value!,
       password: this.signInForm.controls.password.value!,
       passwordCopy: this.signInForm.controls.passwordCopy.value!

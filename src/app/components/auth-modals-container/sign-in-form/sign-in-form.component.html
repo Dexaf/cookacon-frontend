@@ -3,30 +3,6 @@
 </h1>
 <p [innerHTML]="'signInModal.description' | transloco"></p>
 <form [formGroup]="signInForm" (ngSubmit)="submitSignInForm()">
-  <!-- EMAIL -->
-  <div class="entryContainer">
-    <div class="inputContainer">
-      <label for="email">
-        <i-feather name="mail" class="md-icon stroke-second" />
-        Email
-      </label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        formControlName="email"
-        [readonly]="signInReqLoading"/>
-    </div>
-    @if (signInForm.get("email")?.errors &&
-        signInForm.get("email")?.touched &&
-        signInForm.get("email")?.dirty) {
-      <ul class="errorContainer">
-        <li class="errorMessage m-0">
-          {{ "signInModal.errors.email" | transloco }}
-        </li>
-      </ul>
-    }
-  </div>
   <!-- USERNAME -->
   <div class="entryContainer">
     <div class="inputContainer">

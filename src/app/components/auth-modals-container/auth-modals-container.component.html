@@ -1,26 +1,7 @@
 @if (isLoginModalOpened$ | async) {
   @defer (when isLoginModalOpened$ | async) {
-    <app-modal-wrapper (onModalClose)="closeLoginModal()" [hasFooter]="true">
-      <form body>
-        <div>
-          <label for="email">Email:</label>
-          <input type="email" name="email" id="email" />
-        </div>
-        <div>
-          <label for="email">Username:</label>
-          <input type="text" name="username" id="username" />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <div>
-          <label for="passwordCopy"
-            >{{ "signInModal.passwordCopy" | transloco }}:</label
-          >
-          <input type="password" name="passwordCopy" id="passwordCopy" />
-        </div>
-      </form>
+    <app-modal-wrapper [modalSize]="'sm'" (onModalClose)="closeLoginModal()">
+      <app-log-in-form body> </app-log-in-form>
     </app-modal-wrapper>
   }
 }
