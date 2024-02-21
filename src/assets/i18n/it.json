@@ -15,6 +15,27 @@
         "hasLowerCase": "La password deve contenere almeno una lettera minuscola (a,b,c,d...)"
       },
       "passwordCopy": "Le password non corrispondono"
+    },
+    "success": {
+      "title": "Grazie per esserti iscritto!",
+      "body": "A breve verrai diretto alla tua pagina di profilo"
+    }
+  },
+  "errorCodes": {
+    "FAILED_CONNECTION_TO_PROVIDER": {
+      "title": "Qualcosa e' andato storto...",
+      "body": "Sembra che i nostri servizi siano giu', riprova piu' tardi."
+    },
+    "mainProblems": {
+      "VALIDATION_ERROR": "C'e' un problema nella richiesta"
+    },
+    "errors": {
+      "MISSING_USERNAME": "Manca uno username.",
+      "USERNAME_TAKEN": "Username già in uso.",
+      "MISSING_PASSWORD": "Manca la password.",
+      "SHORT_PASSWORD": "Password troppo corta.",
+      "MISSING_PASSWORD_COPY": "Devi confermare la password.",
+      "PASSWORDS_NOT_EQUAL": "Le password non corrispondono."
     }
   }
 }

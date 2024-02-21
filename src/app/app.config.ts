@@ -3,12 +3,13 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './routes/app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@ngneat/transloco';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppStateReducer } from '@store/reducer';
+import { toastInterceptor } from './interceptor/toast.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,9 @@ export const appConfig: ApplicationConfig = {
       loader: TranslocoHttpLoader
     }),
     provideStore({ appState: AppStateReducer }),
-    provideStoreDevtools()
+    provideStoreDevtools(),
+    provideHttpClient(withInterceptors(
+      [toastInterceptor]
+    ))
   ]
 };

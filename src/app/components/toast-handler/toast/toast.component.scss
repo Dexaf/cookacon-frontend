@@ -1,0 +1,59 @@
+@import "styles";
+
+.toast {
+  position: fixed;
+  z-index: 99;
+  width: 50vw;
+  bottom: 2rem;
+  right: 2rem;
+
+  & > p {
+    padding: 0.8rem;
+  }
+  & > h5 {
+    padding: 0.8rem;
+    color: $text-color;
+  }
+  &.info {
+    & > h5 {
+      background: linear-gradient(
+        45deg,
+        rgb(36, 123, 223) 0%,
+        rgba(36, 123, 223, 0) 100%
+      );
+    }
+    background-color: rgb(30, 135, 255);
+  }
+
+  &.success {
+    & > h5 {
+      background: linear-gradient(
+        45deg,
+        rgb(67, 223, 36) 0%,
+        rgba(67, 223, 36, 0) 100%
+      );
+      background-color: rgb(67, 223, 36);
+    }
+    background-color: rgb(30, 255, 75);
+  }
+
+  &.error {
+    & > h5 {
+      background: linear-gradient(
+        45deg,
+        rgb(223, 36, 36) 0%,
+        rgba(223, 36, 36, 0) 100%
+      );
+    }
+    background-color: rgb(255, 30, 30);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .toast {
+    position: fixed;
+    width: 100vw;
+    bottom: 2rem;
+    right: 2rem;
+  }
+}
