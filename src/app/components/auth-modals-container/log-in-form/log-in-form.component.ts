@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 import { ToastService } from '../../../services/toast.service';
 import { finalize } from 'rxjs/operators';
 import { toastType } from '../../../models/enums/toastType.enum';
+import * as appStateAction from '@store/actions';
 
 @Component({
   selector: 'app-log-in-form',
@@ -45,10 +46,11 @@ export class LogInFormComponent {
       username: this.logInForm.controls.username.value!,
       password: this.logInForm.controls.password.value!
     })
-    .pipe(finalize(() => { this.logInReqLoading = false; }))
-    .subscribe(() => {
-      const title = this.translocoService.translate("logInModal.success.title");
-      this.toastService.makeToast(toastType.Success, title, "", 3000)
-    })
+      .pipe(finalize(() => { this.logInReqLoading = false; }))
+      .subscribe((res) => {
+        const title = this.translocoService.translate("logInModal.success.title");
+        this.toastService.makeToast(toastType.Success, title, "", 3000)
+        this.store.dispatch(appStateAction.addToken({ token: res.token }))
+      })
   }
 }

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '@store/interfaces';
-import { isStrongPassword, arePasswordsEquals } from '../signInForm-validators';
+import { isStrongPassword, arePasswordsEquals } from './signInForm-validators';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { IconsModule } from '../../../icons.module';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { AuthService } from '../../../services/auth.service';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../services/toast.service';
 import { toastType } from '../../../models/enums/toastType.enum';
+import * as appStateAction from '@store/actions';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -54,8 +55,12 @@ export class SignInFormComponent {
       .subscribe(() => {
         const title = this.translocoService.translate("signInModal.success.title");
         const body = this.translocoService.translate("signInModal.success.body");
+        this.toastService.makeToast(toastType.Success, title, body, 3000);
 
-        this.toastService.makeToast(toastType.Success, title, body, 3000)
+        this.authService.logIn({
+          username: this.signInForm.controls.username.value!,
+          password: this.signInForm.controls.password.value!
+        }).subscribe((res) => { this.store.dispatch(appStateAction.addToken({ token: res.token })) })
       })
   }
 }
