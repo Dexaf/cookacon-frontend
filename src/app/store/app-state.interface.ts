@@ -13,5 +13,5 @@ export interface UserData {
   countryCode: CountryCodesEnum | null;
   description: string | null;
   email: string | null;
-  profilePictureBase64: string | null;
+  profilePictureUrl: string | null;
 }

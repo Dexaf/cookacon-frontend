@@ -11,6 +11,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppStateReducer } from '@store/reducer';
 import { toastInterceptor } from './interceptor/toast.interceptor';
 import { provideEffects } from '@ngrx/effects';
+import { AppStateEffects } from '@store/effects';
+import { authTokenInterceptor } from './interceptor/authToken.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,17 +20,17 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(),
     provideTransloco({
-        config: {
-            availableLangs: ['it', 'en'],
-            defaultLang: 'it',
-            reRenderOnLangChange: true,
-            prodMode: !isDevMode(),
-        },
-        loader: TranslocoHttpLoader
+      config: {
+        availableLangs: ['it', 'en'],
+        defaultLang: 'it',
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader
     }),
     provideStore({ appState: AppStateReducer }),
     provideStoreDevtools(),
-    provideHttpClient(withInterceptors([toastInterceptor])),
-    provideEffects()
-]
+    provideHttpClient(withInterceptors([toastInterceptor, authTokenInterceptor])),
+    provideEffects(AppStateEffects)
+  ]
 };

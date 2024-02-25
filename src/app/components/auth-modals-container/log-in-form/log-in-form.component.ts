@@ -50,7 +50,7 @@ export class LogInFormComponent {
       .subscribe((res) => {
         const title = this.translocoService.translate("logInModal.success.title");
         this.toastService.makeToast(toastType.Success, title, "", 3000)
-        this.store.dispatch(appStateAction.addToken({ token: res.token }))
+        this.store.dispatch(appStateAction.addAuthToken({ authToken: res.token }))
       })
   }
 }

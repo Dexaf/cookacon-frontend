@@ -27,7 +27,8 @@
       "@store/actions":["./src/app/store/app-state.actions.ts"],
       "@store/reducer":["./src/app/store/app-state.reducer.ts"],
       "@store/interfaces":["./src/app/store/app-state.interface.ts"],
-      "@store/selectors":["./src/app/store/app-state.selectors.ts"]
+      "@store/selectors":["./src/app/store/app-state.selectors.ts"],
+      "@store/effects":["./src/app/store/app-state.effects.ts"]
     }
   },
   "angularCompilerOptions": {

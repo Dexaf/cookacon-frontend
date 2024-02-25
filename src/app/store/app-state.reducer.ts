@@ -12,7 +12,7 @@ export const initialState: AppState = {
     countryCode: null,
     description: null,
     email: null,
-    profilePictureBase64: null
+    profilePictureUrl: null
   }
 }
 
@@ -25,6 +25,8 @@ export const AppStateReducer = createReducer(
   on(appStateAction.openSigninModal, (state) => ({ ...state, isSigninModalOpened: true })),
   on(appStateAction.closeSigninModal, (state) => ({ ...state, isSigninModalOpened: false })),
   //AUTH
-  on(appStateAction.addToken, (state, props) => ({ ...state, currentUser: { ...state.currentUser, authToken: props.token } })),
+  on(appStateAction.addAuthToken, (state, props) => ({ ...state, currentUser: { ...state.currentUser, authToken: props.authToken } })),
   on(appStateAction.nullToken, (state) => ({ ...state, currentUser: { ...state.currentUser, authToken: null } })),
+  //USER-DATA
+  on(appStateAction.addLoggedUserProfile, (state, props) => ({...state, currentUser: {...state.currentUser, ...props.userProfile}}))
 )

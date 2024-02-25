@@ -34,7 +34,8 @@
       "body": "Sembra che i nostri servizi siano giu', riprova piu' tardi."
     },
     "mainProblems": {
-      "VALIDATION_ERROR": "C'e' un problema nella richiesta"
+      "VALIDATION_ERROR": "C'e' un problema nella richiesta",
+      "NO_AUTHORIZATION_TOKEN": "Non sei dentro il tuo account!"
     },
     "errors": {
       "MISSING_USERNAME": "Manca uno username.",

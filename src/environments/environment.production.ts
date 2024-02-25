@@ -1,10 +1,15 @@
 export const environment = {
   baseUrl: "",
-  providerUrl: "http://localhost:3000",
+  providerUrl: "",
   endpoints: {
     auth: {
-      signin: "auth/signin",
-      login: "auth/login"
+      controller: "auth",
+      signin: "signin",
+      login: "login"
+    },
+    userData: {
+      controller: "userData",
+      ownProfile: "profile/own"
     }
   }
 };

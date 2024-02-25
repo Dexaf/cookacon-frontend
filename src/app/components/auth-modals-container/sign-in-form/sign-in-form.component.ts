@@ -60,7 +60,7 @@ export class SignInFormComponent {
         this.authService.logIn({
           username: this.signInForm.controls.username.value!,
           password: this.signInForm.controls.password.value!
-        }).subscribe((res) => { this.store.dispatch(appStateAction.addToken({ token: res.token })) })
+        }).subscribe((res) => { this.store.dispatch(appStateAction.addAuthToken({ authToken: res.token })) })
       })
   }
 }

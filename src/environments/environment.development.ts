@@ -3,8 +3,13 @@ export const environment = {
   providerUrl: "http://localhost:3000",
   endpoints: {
     auth: {
-      signin: "auth/signin",
-      login: "auth/login"
+      controller: "auth",
+      signin: "signin",
+      login: "login"
+    },
+    userData: {
+      controller: "userData",
+      ownProfile: "profile/own"
     }
   }
 };
