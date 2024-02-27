@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../pages/home/home.component';
 import { UserProfileComponent } from '../pages/user-profile/user-profile.component';
+import { authGuard } from '../guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -11,13 +12,14 @@ export const routes: Routes = [
   {
     //TODO - put auth guard
     path: 'user',
+    pathMatch: 'full',
     redirectTo: 'user/own', 
-    pathMatch: 'full'
   },
   {
     path: 'user/own',
+    pathMatch: 'full',
     component: UserProfileComponent,
-    pathMatch: 'full'
+    canActivate: [authGuard]
   }
   // {
   //   path: 'user/:userId',
