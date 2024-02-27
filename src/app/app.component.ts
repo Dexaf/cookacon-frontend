@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss', '../styles.scss'],
   imports: [
     RouterOutlet,
     NavBarComponent,

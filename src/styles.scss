@@ -23,6 +23,14 @@ html {
   color: $text-color;
 }
 
+.router-container {
+  display: flex;
+  place-content: center;
+  & > :first-child {
+    width: 80vw;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -261,6 +269,12 @@ form {
 
   .sm-width {
     width: 100vw;
+  }
+
+  .router-container {
+    & > :first-child {
+      width: 95vw;
+    }
   }
 
   form {
