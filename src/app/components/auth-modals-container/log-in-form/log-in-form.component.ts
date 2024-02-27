@@ -10,6 +10,7 @@ import { ToastService } from '../../../services/toast.service';
 import { finalize } from 'rxjs/operators';
 import { toastType } from '../../../models/enums/toastType.enum';
 import * as appStateAction from '@store/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in-form',
@@ -30,6 +31,7 @@ export class LogInFormComponent {
   authService = inject(AuthService);
   toastService = inject(ToastService);
   translocoService = inject(TranslocoService);
+  router = inject(Router);
 
   //vars
   logInForm = this.formBuilder.group({
@@ -51,6 +53,8 @@ export class LogInFormComponent {
         const title = this.translocoService.translate("logInModal.success.title");
         this.toastService.makeToast(toastType.Success, title, "", 3000)
         this.store.dispatch(appStateAction.addAuthToken({ authToken: res.token }))
+        this.router.navigate(["/user/own"]);
+        this.store.dispatch(appStateAction.closeLoginModal());
       })
   }
 }

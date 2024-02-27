@@ -25,7 +25,7 @@
     "description": "Ci stavi mancando! Entra e condividi con noi le tue nuove idee culinarie!😋",
     "action": "Accedi",
     "success": {
-      "title": "Stai per essere mandato al tuo profilo..."
+      "title": "Stai per venendo reinderizzato al tuo profilo!"
     }
   },
   "errorCodes": {

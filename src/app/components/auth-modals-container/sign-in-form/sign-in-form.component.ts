@@ -11,6 +11,7 @@ import { finalize } from 'rxjs';
 import { ToastService } from '../../../services/toast.service';
 import { toastType } from '../../../models/enums/toastType.enum';
 import * as appStateAction from '@store/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -31,6 +32,7 @@ export class SignInFormComponent {
   authService = inject(AuthService);
   toastService = inject(ToastService);
   translocoService = inject(TranslocoService);
+  router = inject(Router);
 
   //vars
   signInForm = this.formBuilder.group({
@@ -60,7 +62,11 @@ export class SignInFormComponent {
         this.authService.logIn({
           username: this.signInForm.controls.username.value!,
           password: this.signInForm.controls.password.value!
-        }).subscribe((res) => { this.store.dispatch(appStateAction.addAuthToken({ authToken: res.token })) })
+        }).subscribe((res) => {
+          this.store.dispatch(appStateAction.addAuthToken({ authToken: res.token }));
+          this.router.navigate(["/user/own"]);
+          this.store.dispatch(appStateAction.closeLoginModal());
+        })
       })
   }
 }
