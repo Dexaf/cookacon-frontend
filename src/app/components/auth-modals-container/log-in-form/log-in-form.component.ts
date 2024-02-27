@@ -57,4 +57,9 @@ export class LogInFormComponent {
         this.store.dispatch(appStateAction.closeLoginModal());
       })
   }
+
+  openSignInModal() {
+    this.store.dispatch(appStateAction.closeLoginModal());
+    this.store.dispatch(appStateAction.openSigninModal());
+  }
 }

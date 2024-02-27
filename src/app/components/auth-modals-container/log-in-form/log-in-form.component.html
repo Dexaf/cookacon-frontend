@@ -12,9 +12,11 @@
       </label>
       <input type="text" id="username" formControlName="username" />
     </div>
-    @if (logInForm.get("username")?.errors &&
-        logInForm.get("username")?.touched &&
-        logInForm.get("username")?.dirty) {
+    @if (
+      logInForm.get("username")?.errors &&
+      logInForm.get("username")?.touched &&
+      logInForm.get("username")?.dirty
+    ) {
       <ul class="errorContainer">
         <li class="errorMessage m-0">
           {{ "genericErrors.required" | transloco }}
@@ -31,9 +33,11 @@
       </label>
       <input type="password" id="password" formControlName="password" />
     </div>
-    @if (logInForm.get("password")?.errors &&
-        logInForm.get("password")?.touched &&
-        logInForm.get("password")?.dirty) {
+    @if (
+      logInForm.get("password")?.errors &&
+      logInForm.get("password")?.touched &&
+      logInForm.get("password")?.dirty
+    ) {
       <ul class="errorContainer">
         <li class="errorMessage m-0">
           {{ "genericErrors.required" | transloco }}
@@ -43,11 +47,15 @@
   </div>
   <hr style="margin-bottom: 2rem" />
   <section class="flex-center-container buttons">
-    <button 
+    <button class="button-secondary animated" (click)="openSignInModal()">
+      {{ "signInModal.action" | transloco }}
+    </button>
+    <button
       class="button-primary animated"
       style="position: relative"
       [disabled]="!logInForm.valid"
-      type="submit">
+      type="submit"
+    >
       {{ "logInModal.action" | transloco }}
       @if (logInReqLoading) {
         <div class="spinner-container">
