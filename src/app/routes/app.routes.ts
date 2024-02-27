@@ -10,19 +10,18 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    //TODO - put auth guard
-    path: 'user',
-    pathMatch: 'full',
-    redirectTo: 'user/own', 
-  },
-  {
     path: 'user/own',
     pathMatch: 'full',
     component: UserProfileComponent,
     canActivate: [authGuard]
-  }
+  },
   // {
   //   path: 'user/:userId',
   //   component: UserIdComponent
   // }
+  {
+    path: '**',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
 ];
