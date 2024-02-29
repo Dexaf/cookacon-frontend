@@ -63,7 +63,8 @@ export class SignInFormComponent {
           username: this.signInForm.controls.username.value!,
           password: this.signInForm.controls.password.value!
         }).subscribe((res) => {
-          this.store.dispatch(appStateAction.addAuthToken({ authToken: res.token }));
+          this.authService.loadAuthToken(res.token);
+
           this.router.navigate(["/user/own"]);
           this.store.dispatch(appStateAction.closeLoginModal());
         })

@@ -6,6 +6,10 @@ import { AuthModalsContainerComponent } from './components/auth-modals-container
 import { ToastHandlerComponent } from './components/toast-handler/toast-handler/toast-handler.component';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '@store/interfaces';
+import { addAuthToken } from '@store/actions';
+import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,11 +25,13 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
   translocoService = inject(TranslocoService);
+  authService = inject(AuthService)
   translocoSubscription: Subscription | null = null;
 
   ngOnInit(): void {
     let activeLanguage = this.translocoService.getActiveLang();
     this.translocoSubscription = this.translocoService.load(activeLanguage).subscribe();
+    this.authService.loadAuthTokenFromCookie()
   }
 
   ngOnDestroy(): void {
