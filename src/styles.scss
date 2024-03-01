@@ -3,6 +3,7 @@ $secondary-color: #d05717;
 $third-color: #dd1c1a;
 $text-color: #1e1e1e;
 $main-text-color: #0f0f0f;
+$secondary-text-color: grey;
 
 @font-face {
   font-family: "Poppins R";
@@ -21,14 +22,6 @@ html {
 
 * {
   color: $text-color;
-}
-
-.router-container {
-  display: flex;
-  place-content: center;
-  & > :first-child {
-    width: 80vw;
-  }
 }
 
 h1,
@@ -60,6 +53,10 @@ p,
 li {
   font-size: 1.3rem;
   font-family: "Quicksand";
+}
+
+.secondary-text {
+  color: $secondary-text-color;
 }
 
 .m-0 {
@@ -269,12 +266,6 @@ form {
 
   .sm-width {
     width: 100vw;
-  }
-
-  .router-container {
-    & > :first-child {
-      width: 95vw;
-    }
   }
 
   form {

@@ -12,7 +12,8 @@ export const initialState: AppState = {
     countryCode: null,
     description: null,
     email: null,
-    profilePictureUrl: null
+    profilePictureUrl: null,
+    username: null
   }
 }
 

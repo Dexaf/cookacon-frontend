@@ -2,18 +2,14 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, UserData } from '@store/interfaces';
 import { getUserData$ } from '@store/selectors';
-import { UserDataProfileCardComponent } from './components/user-data-profile-card/user-data-profile-card.component';
 
 @Component({
-  selector: 'app-user-profile',
+  selector: 'app-user-data-profile-card',
   standalone: true,
-  imports: [
-    UserDataProfileCardComponent
-  ],
-  templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.scss'
+  templateUrl: './user-data-profile-card.component.html',
+  styleUrl: './user-data-profile-card.component.scss'
 })
-export class UserProfileComponent implements OnInit {
+export class UserDataProfileCardComponent implements OnInit {
   store = inject(Store<AppState>);
   userData: UserData | null = null;
   userDataProfile: string = "assets/images/default_picture.png";

@@ -1,0 +1,26 @@
+<!-- user data -->
+<section class="user-data-profile-card">
+  <!-- profile picture -->
+  <div
+    class="profile-picture-container"
+    alt="profile picture"
+    [style]="'background-image:url(' + userDataProfile + ')'"
+  ></div>
+  <!-- username -->
+  <h4 class="m-0">
+    {{ userData?.username }}
+    <!-- todo handle flags -->
+  </h4>
+  <!-- fullname -->
+  @if (userData?.name || userData?.surname) {
+    <p style="font-weight: bold;" class="secondary-text m-0">
+      {{ userData?.name + " " + userData?.surname }}
+    </p>
+  }
+  <!-- description -->
+  @if (userData?.description) {
+      <p class="description m-0">
+        {{ userData?.description }}
+      </p>
+  }
+</section>

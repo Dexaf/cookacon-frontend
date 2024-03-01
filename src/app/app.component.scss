@@ -1,0 +1,16 @@
+.router-container {
+  display: flex;
+  place-content: center;
+  & > :first-child {
+    width: 80vw;
+    padding-top: 2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .router-container {
+    & > :first-child {
+      width: 95vw;
+    }
+  }
+}

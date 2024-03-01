@@ -14,4 +14,5 @@ export interface UserData {
   description: string | null;
   email: string | null;
   profilePictureUrl: string | null;
+  username: string | null;
 }

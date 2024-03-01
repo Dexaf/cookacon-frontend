@@ -1,0 +1,22 @@
+@import "styles";
+
+.profile-picture-container {
+  width: 15vw;
+  height: 15vw;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1rem solid $secondary-color;
+}
+
+.user-data-profile-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.description {
+  text-align: center;
+}
