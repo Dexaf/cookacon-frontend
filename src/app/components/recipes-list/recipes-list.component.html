@@ -1,0 +1,16 @@
+<!-- TODO - finisce scheda e muovi a componente -->
+@if (recipes.length > 0) {
+  @for (recipe of recipes; track recipe._id) {
+    <div style="display: flex; flex-direction: row;">
+      <section style="width:20%">
+        <img [src]="providerUrl + recipe.mainPictureUrl" [alt]="recipe.title" />
+      </section>
+      <section>
+        <h5 class="m-0">{{ recipe.title }}</h5>
+        <p>{{ recipe.description }}</p>
+      </section>
+    </div>
+  }
+} @else {
+  <p>Non hai ancora ricette...</p>
+}

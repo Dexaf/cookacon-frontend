@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, UserData } from '@store/interfaces';
 import { getUserData$ } from '@store/selectors';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-user-data-profile-card',
@@ -18,7 +19,10 @@ export class UserDataProfileCardComponent implements OnInit {
     this.store.select(getUserData$)
       .subscribe(_userData => {
         this.userData = _userData;
-        this.userDataProfile = _userData.profilePictureUrl ? _userData.profilePictureUrl : "assets/images/default_picture.png";
+        if (_userData.profilePictureUrl)
+            this.userDataProfile = environment.providerUrl + _userData.profilePictureUrl;
+        else
+          this.userDataProfile = "assets/images/default_picture.png";
       })
   }
 }
