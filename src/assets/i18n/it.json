@@ -28,6 +28,16 @@
       "title": "Bentornato!"
     }
   },
+  "recipes": {
+    "types":{
+      "STARTER": "antipasto",
+      "FIRST_COURSE": "primo piatto",
+      "SECOND_COURSE": "secondo piatto",
+      "DESSERT": "dessert",
+      "CONTOUR": "contorno"
+    },
+    "hours": "ore"
+  },
   "errorCodes": {
     "FAILED_CONNECTION_TO_PROVIDER": {
       "title": "Qualcosa e' andato storto...",
@@ -44,8 +54,8 @@
       "SHORT_PASSWORD": "Password troppo corta.",
       "MISSING_PASSWORD_COPY": "Devi confermare la password.",
       "PASSWORDS_NOT_EQUAL": "Le password non corrispondono.",
-      "USER_NO_MATCH":"Lo user non sembra esistere.",
-      "WRONG_PASSWORD":"La password non e' corretta."
+      "USER_NO_MATCH": "Lo user non sembra esistere.",
+      "WRONG_PASSWORD": "La password non e' corretta."
     }
   },
   "genericErrors": {

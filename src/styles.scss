@@ -50,8 +50,13 @@ h5 {
   font-size: 2rem;
 }
 p,
-li {
+li
+{
   font-size: 1.3rem;
+  font-family: "Quicksand";
+}
+
+small { 
   font-family: "Quicksand";
 }
 
@@ -121,6 +126,11 @@ button {
   height: 2rem;
 }
 
+.xs-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
 .clickable {
   cursor: pointer;
 }
@@ -165,6 +175,10 @@ i-feather {
 
 .stroke-third {
   stroke: $third-color;
+}
+
+.stroke-grey {
+  stroke: $secondary-text-color;
 }
 
 form {

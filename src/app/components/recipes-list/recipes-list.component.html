@@ -1,16 +1,51 @@
-<!-- TODO - finisce scheda e muovi a componente -->
 @if (recipes.length > 0) {
-  @for (recipe of recipes; track recipe._id) {
-    <div style="display: flex; flex-direction: row;">
-      <section style="width:20%">
-        <img [src]="providerUrl + recipe.mainPictureUrl" [alt]="recipe.title" />
-      </section>
-      <section>
-        <h5 class="m-0">{{ recipe.title }}</h5>
-        <p>{{ recipe.description }}</p>
-      </section>
-    </div>
-  }
+  <section style="display: flex; flex-direction: row; row-gap: 1.5rem">
+    @for (recipe of recipes; track recipe._id) {
+      <!-- TODO - RENDERE MOBILE FRIENDLY -->
+      <!-- TODO - COMANDI DINAMICI VEDI E MODIFICA -->
+      <div class="recipe-card animated">
+        <!-- LEFT -->
+        <section>
+          <img
+            [src]="providerUrl + recipe.mainPictureUrl"
+            [alt]="recipe.title"
+          />
+        </section>
+        <!-- RIGHT -->
+        <section>
+          <h5 class="m-0" style="margin-bottom: 0.5rem">{{ recipe.title }}</h5>
+          <div class="recipe-data-descriptors">
+            <small>
+              <i-feather
+                name="calendar"
+                class="xs-icon stroke-grey"
+              ></i-feather>
+              {{ recipe.uploadData | slice: 0 : 10 }}
+            </small>
+            <small>
+              <i-feather name="clock" class="xs-icon stroke-grey"></i-feather>
+              {{ recipe.cookingTime }}
+              {{ "recipes.hours" | transloco | titlecase }}
+            </small>
+            <small>
+              <i-feather name="coffee" class="xs-icon stroke-grey"></i-feather>
+              {{ "recipes.types." + recipe.type | transloco | titlecase }}
+            </small>
+            <small>
+              <i-feather name="Users" class="xs-icon stroke-grey"></i-feather>
+              {{ recipe.minQta }}
+            </small>
+          </div>
+          <p class="m-0">
+            {{ recipe.description | slice: 0 : 300 }}
+            @if (recipe.description.length > 300) {
+              ...
+            }
+          </p>
+        </section>
+      </div>
+    }
+  </section>
 } @else {
   <p>Non hai ancora ricette...</p>
 }
