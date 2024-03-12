@@ -60,5 +60,9 @@
   },
   "genericErrors": {
     "required": "Il campo non puo' essere vuoto."
+  },
+  "generics": {
+    "expandText": "Leggi il resto",
+    "collapseText": "Chiudi testo"
   }
 }

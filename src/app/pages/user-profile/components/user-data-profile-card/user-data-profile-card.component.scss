@@ -20,3 +20,11 @@
 .description {
   text-align: center;
 }
+
+
+@media only screen and (max-width: $mobile-width) {
+  .profile-picture-container {
+    width: 50vw;
+    height: 50vw;
+  }
+}

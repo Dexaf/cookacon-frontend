@@ -9,7 +9,7 @@
   <!-- username -->
   <h4 class="m-0">
     {{ userData?.username }}
-    <!-- todo handle flags -->
+    <!-- todo handle nations flags -->
   </h4>
   <!-- fullname -->
   @if (userData?.name || userData?.surname) {
@@ -20,7 +20,13 @@
   <!-- description -->
   @if (userData?.description) {
       <p class="description m-0">
-        {{ userData?.description }}
+        <app-collapsed-text
+          [isTextCollapsed]="isDescriptionCollapsed"
+          [text]="userData?.description ?? 'ND'"
+          [collapsedText]="'generics.expandText' | transloco"
+          [uncollapsedText]="'generics.collapseText' | transloco"
+          (toggleCollapsing)="toggleCollapse($event)">
+        </app-collapsed-text>
       </p>
   }
 </section>

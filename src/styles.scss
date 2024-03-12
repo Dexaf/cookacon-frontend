@@ -4,6 +4,7 @@ $third-color: #dd1c1a;
 $text-color: #1e1e1e;
 $main-text-color: #0f0f0f;
 $secondary-text-color: grey;
+$mobile-width: 768px;
 
 @font-face {
   font-family: "Poppins R";
@@ -269,7 +270,7 @@ form {
   color: red;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: $mobile-width) {
   .lg-width {
     width: 100vw;
   }

@@ -1,7 +1,28 @@
+@import "styles";
+
+.profile-page-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .user-data-profile-card-container {
   width: 20vw;
 }
 
 .user-dashboard {
   width: 60vw;
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .profile-page-container {
+    flex-direction: column;
+  }
+
+  .user-data-profile-card-container {
+    width: 100%;
+  }
+  
+  .user-dashboard {
+    width: 100%;
+  }
 }

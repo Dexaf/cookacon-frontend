@@ -1,19 +1,27 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, UserData } from '@store/interfaces';
 import { getUserData$ } from '@store/selectors';
 import { environment } from '../../../../../environments/environment';
+import { MOBILE_WIDTH } from '../../../../models/constants/constants';
+import { CollapsedTextComponent } from '../../../../components/collapsed-text/collapsed-text.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-user-data-profile-card',
   standalone: true,
   templateUrl: './user-data-profile-card.component.html',
-  styleUrl: './user-data-profile-card.component.scss'
+  styleUrl: './user-data-profile-card.component.scss',
+  imports: [
+    CollapsedTextComponent,
+    TranslocoModule
+  ]
 })
 export class UserDataProfileCardComponent implements OnInit {
   store = inject(Store<AppState>);
   userData: UserData | null = null;
   userDataProfile: string = "assets/images/default_picture.png";
+  isDescriptionCollapsed = false;
 
   ngOnInit(): void {
     this.store.select(getUserData$)
@@ -24,5 +32,18 @@ export class UserDataProfileCardComponent implements OnInit {
         else
           this.userDataProfile = "assets/images/default_picture.png";
       })
+
+    this.isDescriptionCollapsed = window.innerWidth <= MOBILE_WIDTH
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if(!event.target)
+      return
+    this.isDescriptionCollapsed = event.target.screen.width <= MOBILE_WIDTH
+  }
+
+  toggleCollapse(toggleState: boolean) {
+    this.isDescriptionCollapsed = toggleState;
   }
 }
