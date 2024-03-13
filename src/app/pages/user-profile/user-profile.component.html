@@ -1,12 +1,14 @@
 <!-- USER PROFILE DATA -->
 <div class="profile-page-container">
   <section class="user-data-profile-card-container">
-    <app-user-data-profile-card>
-    </app-user-data-profile-card>
+    @if(ownProfile){
+      <app-user-data-profile-card [userData]="ownProfile">
+      </app-user-data-profile-card>
+    }
   </section>
   <!-- DASHBOARD -->
   <section class="user-dashboard">
     <hr>
-    <app-recipes-list></app-recipes-list>
+    <app-recipes-list [canModify]="true"></app-recipes-list>
   </section>
 </div>

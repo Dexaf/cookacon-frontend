@@ -8,28 +8,28 @@
   ></div>
   <!-- username -->
   <h4 class="m-0">
-    {{ userData?.username }}
+    {{ userData.username }}
     <!-- todo handle nations flags -->
   </h4>
   <!-- fullname -->
-  @if (userData?.name || userData?.surname) {
+  @if (userData.name || userData.surname) {
     <p style="font-weight: bold" class="secondary-text m-0">
-      {{ userData?.name + " " + userData?.surname }}
+      {{ userData.name + " " + userData.surname }}
     </p>
   }
   <!-- description -->
-  @if (userData?.description) {
+  @if (userData.description) {
     @if (areWeInMobile) {
       <p class="description m-0">
         <app-collapsed-text
-          [text]="userData?.description!"
+          [text]="userData.description"
           [collapsedText]="'generics.expandText' | transloco"
           [uncollapsedText]="'generics.collapseText' | transloco"
         >
         </app-collapsed-text>
       </p>
     } @else {
-      <p>{{ userData?.description }}</p>
+      <p>{{ userData.description }}</p>
     }
   }
 </section>

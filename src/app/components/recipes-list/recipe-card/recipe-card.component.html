@@ -1,0 +1,44 @@
+<div class="recipe-card animated" (click)="viewRecipe()">
+  <!-- LEFT -->
+  <section>
+    <img
+      [src]="providerUrl + recipe.mainPictureUrl"
+      [alt]="recipe.title"
+    />
+  </section>
+  <!-- RIGHT -->
+  <section>
+    <!-- TITLE -->
+    <div class="recipe-title-container">
+      <h5 class="m-0">{{ recipe.title }}</h5>
+      @if(canModify){
+        <i-feather (click)="modifyRecipe(); $event.stopPropagation()" name="edit" class="sm-icon stroke-second"></i-feather>
+      }
+    </div>
+    <div class="recipe-data-descriptors">
+      <small>
+        <i-feather name="calendar" class="xs-icon stroke-grey"></i-feather>
+        {{ recipe.uploadData | slice: 0 : 10 }}
+      </small>
+      <small>
+        <i-feather name="clock" class="xs-icon stroke-grey"></i-feather>
+        {{ recipe.cookingTime }}
+        {{ "recipes.hours" | transloco | titlecase }}
+      </small>
+      <small>
+        <i-feather name="coffee" class="xs-icon stroke-grey"></i-feather>
+        {{ "recipes.types." + recipe.type | transloco | titlecase }}
+      </small>
+      <small>
+        <i-feather name="Users" class="xs-icon stroke-grey"></i-feather>
+        {{ recipe.minQta }}
+      </small>
+    </div>
+    <p class="m-0">
+      {{ recipe.description | slice: 0 : 300 }}
+      @if (recipe.description.length > 300) {
+        ...
+      }
+    </p>
+  </section>
+</div>

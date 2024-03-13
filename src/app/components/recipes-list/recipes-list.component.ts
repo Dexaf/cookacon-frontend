@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { FeedService } from '../../services/feed.service';
 import { Recipe } from '../../models/interfaces/feed.interface';
 import { environment } from '../../../environments/environment';
@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { IconsModule } from '../../icons.module';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 
 @Component({
   selector: 'app-recipes-list',
@@ -13,12 +14,14 @@ import { TranslocoModule } from '@ngneat/transloco';
   imports: [
     IconsModule,
     CommonModule,
-    TranslocoModule
+    TranslocoModule,
+    RecipeCardComponent
   ],
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss', '../../../styles.scss']
 })
 export class RecipesListComponent implements OnInit, OnDestroy {
+  @Input() canModify = false;
   feedService = inject(FeedService)
   recipes: Recipe[] = [];
   providerUrl: string = "";
