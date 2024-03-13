@@ -1,12 +1,12 @@
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { FeedService } from '../../services/feed.service';
-import { Recipe } from '../../models/interfaces/feed.interface';
 import { environment } from '../../../environments/environment';
 import { Subscription } from 'rxjs';
 import { IconsModule } from '../../icons.module';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import { Recipe } from '../../models/interfaces/recipe.interface';
 
 @Component({
   selector: 'app-recipes-list',
@@ -36,7 +36,6 @@ export class RecipesListComponent implements OnInit, OnDestroy {
           this.recipes = recipes
         })
     )
-
   }
 
   ngOnDestroy(): void {

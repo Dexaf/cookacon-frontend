@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { Recipe } from '../../../models/interfaces/feed.interface';
+import { Component, Input, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { IconsModule } from '../../../icons.module';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
+import { Router } from '@angular/router';
+import { Recipe, UserId } from '../../../models/interfaces/recipe.interface';
 
 @Component({
   selector: 'app-recipe-card',
@@ -17,13 +18,14 @@ import { TranslocoModule } from '@ngneat/transloco';
   styleUrls: ['./recipe-card.component.scss', '../../../../styles.scss']
 })
 export class RecipeCardComponent {
+  router = inject(Router);
   @Input() recipe!: Recipe;
   @Input() canModify: boolean = false;
 
   providerUrl = environment.providerUrl;
 
   viewRecipe() {
-    alert("view");
+    this.router.navigate(['recipe/:userId/:recipeId/view'.replace(':recipeId', this.recipe._id).replace(':userId', this.recipe.userId._id)]);
   }
 
   modifyRecipe() {

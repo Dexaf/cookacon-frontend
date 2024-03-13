@@ -11,6 +11,7 @@ import { finalize } from 'rxjs/operators';
 import { toastType } from '../../../models/enums/toastType.enum';
 import * as appStateAction from '@store/actions';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-log-in-form',
@@ -47,17 +48,17 @@ export class LogInFormComponent {
     this.authService.logIn({
       username: this.logInForm.controls.username.value!,
       password: this.logInForm.controls.password.value!
-    })
-      .pipe(finalize(() => { this.logInReqLoading = false; }))
-      .subscribe((res) => {
-        const title = this.translocoService.translate("logInModal.success.title");
-        this.toastService.makeToast(toastType.Success, title, "", 3000)
-        
-        this.authService.loadAuthToken(res.token);
+    }).pipe(
+      finalize(() => { this.logInReqLoading = false; })
+    ).subscribe((res) => {
+      const title = this.translocoService.translate("logInModal.success.title");
+      this.toastService.makeToast(toastType.Success, title, "", 3000)
 
-        this.router.navigate(["/user/own"]);
-        this.store.dispatch(appStateAction.closeLoginModal());
-      })
+      this.authService.loadAuthToken(res.token);
+
+      this.router.navigate(["/user/own"]);
+      this.store.dispatch(appStateAction.closeLoginModal());
+    })
   }
 
   openSignInModal() {

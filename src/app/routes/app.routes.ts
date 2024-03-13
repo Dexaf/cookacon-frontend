@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from '../pages/home/home.component';
 import { UserProfileComponent } from '../pages/user-profile/user-profile.component';
 import { authGuard } from '../guards/auth.guard';
+import { RecipeViewComponent } from '../pages/recipe/view/recipe-view/recipe-view.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,11 @@ export const routes: Routes = [
     pathMatch: 'full',
     component: UserProfileComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'recipe/:userId/:recipeId/view',
+    component: RecipeViewComponent,
+    pathMatch: 'full'
   },
   // {
   //   path: 'user/:userId',

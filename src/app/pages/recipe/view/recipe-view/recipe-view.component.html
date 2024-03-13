@@ -1,0 +1,68 @@
+@if (isLoadingRecipe) {
+} @else {
+  @if (recipe) {
+    <div class="recipe-container">
+      <div class="recipe-wrapper">
+        <!-- RECIPE IMAGE -->
+        <section class="recipe-header">
+          <h2 class="m-0">{{ recipe.title }}</h2>
+          <img [src]="providerUrl + recipe.mainPictureUrl" />
+        </section>
+        <!-- DESCRIPTORS -->
+        <div>
+          <!-- DATA -->
+          <section class="recipe-data-descriptors">
+            <span>
+              <i-feather
+                name="calendar"
+                class="md-icon stroke-grey"
+              ></i-feather>
+              {{ recipe.uploadData | slice: 0 : 10 }}
+            </span>
+            <span>
+              <i-feather name="clock" class="md-icon stroke-grey"></i-feather>
+              {{ recipe.cookingTime }}
+              {{ "recipes.hours" | transloco | titlecase }}
+            </span>
+            <span>
+              <i-feather name="coffee" class="md-icon stroke-grey"></i-feather>
+              {{ "recipes.types." + recipe.type | transloco | titlecase }}
+            </span>
+            <span>
+              <i-feather name="Users" class="md-icon stroke-grey"></i-feather>
+              {{ recipe.minQta }}
+            </span>
+          </section>
+          <!-- DESCRIPTIONS -->
+          <p>{{ recipe.description }}</p>
+          <!-- TODO ADD STYLE AND MAKE MOBILE FRIENDLY -->
+          <!-- INGREDIENTS -->
+          <section>
+            @for (ingredient of recipe.ingredients; track ingredient._id) {
+              <div>
+                <img
+                  [src]="providerUrl + ingredient.pictureUrl"
+                  [alt]="ingredient.name"
+                />
+                <p>{{ ingredient.name }} x {{ ingredient.qta }}</p>
+              </div>
+            }
+          </section>
+          <!-- STEPS -->
+          <section>
+            @for (step of recipe.steps; track step._id) {
+              <div>
+                <img [src]="providerUrl + step.pictureUrl" [alt]="step.title" />
+                <p>
+                  {{ step.description }}
+                </p>
+              </div>
+            }
+          </section>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <!-- TODO SOMETHING WENT WRONG SECTION -->
+  }
+}
