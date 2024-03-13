@@ -13,20 +13,23 @@
   </h4>
   <!-- fullname -->
   @if (userData?.name || userData?.surname) {
-    <p style="font-weight: bold;" class="secondary-text m-0">
+    <p style="font-weight: bold" class="secondary-text m-0">
       {{ userData?.name + " " + userData?.surname }}
     </p>
   }
   <!-- description -->
   @if (userData?.description) {
+    @if (areWeInMobile) {
       <p class="description m-0">
         <app-collapsed-text
-          [isTextCollapsed]="isDescriptionCollapsed"
-          [text]="userData?.description ?? 'ND'"
+          [text]="userData?.description!"
           [collapsedText]="'generics.expandText' | transloco"
           [uncollapsedText]="'generics.collapseText' | transloco"
-          (toggleCollapsing)="toggleCollapse($event)">
+        >
         </app-collapsed-text>
       </p>
+    } @else {
+      <p>{{ userData?.description }}</p>
+    }
   }
 </section>

@@ -21,7 +21,7 @@ export class UserDataProfileCardComponent implements OnInit {
   store = inject(Store<AppState>);
   userData: UserData | null = null;
   userDataProfile: string = "assets/images/default_picture.png";
-  isDescriptionCollapsed = false;
+  areWeInMobile = false;
 
   ngOnInit(): void {
     this.store.select(getUserData$)
@@ -33,17 +33,11 @@ export class UserDataProfileCardComponent implements OnInit {
           this.userDataProfile = "assets/images/default_picture.png";
       })
 
-    this.isDescriptionCollapsed = window.innerWidth <= MOBILE_WIDTH
+    this.areWeInMobile = window.innerWidth <= MOBILE_WIDTH
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    if(!event.target)
-      return
-    this.isDescriptionCollapsed = event.target.screen.width <= MOBILE_WIDTH
-  }
-
-  toggleCollapse(toggleState: boolean) {
-    this.isDescriptionCollapsed = toggleState;
+  @HostListener('window:resize')
+  onResize() {
+    this.areWeInMobile = window.innerWidth <= MOBILE_WIDTH
   }
 }
