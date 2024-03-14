@@ -12,6 +12,7 @@ import { toastType } from '../../../models/enums/toastType.enum';
 import * as appStateAction from '@store/actions';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoadingSpinnerComponent } from '../../loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-log-in-form',
@@ -20,7 +21,8 @@ import { Subscription } from 'rxjs';
     TranslocoModule,
     IconsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    LoadingSpinnerComponent
   ],
   templateUrl: './log-in-form.component.html',
   styleUrls: ['./log-in-form.component.scss', '../../../../styles.scss']

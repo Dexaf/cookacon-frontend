@@ -12,6 +12,7 @@ import { ToastService } from '../../../services/toast.service';
 import { toastType } from '../../../models/enums/toastType.enum';
 import * as appStateAction from '@store/actions';
 import { Router } from '@angular/router';
+import { LoadingSpinnerComponent } from '../../loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -20,7 +21,8 @@ import { Router } from '@angular/router';
     TranslocoModule,
     IconsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    LoadingSpinnerComponent
   ],
   templateUrl: './sign-in-form.component.html',
   styleUrls: ['./sign-in-form.component.scss', '../../../../styles.scss']

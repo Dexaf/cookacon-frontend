@@ -108,18 +108,8 @@
       type="submit">
       {{ "signInModal.action" | transloco | uppercase }}
       @if (signInReqLoading) {
-        <div class="spinner-container">
-          <svg class="spinner" viewBox="0 0 50 50">
-            <circle
-              class="path"
-              cx="25"
-              cy="25"
-              r="20"
-              fill="none"
-              stroke-width="5">
-            </circle>
-          </svg>
-        </div>
+        <app-loading-spinner>
+        </app-loading-spinner>
       }
     </button>
   </section>
