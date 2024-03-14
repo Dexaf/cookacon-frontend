@@ -63,6 +63,8 @@
   },
   "generics": {
     "expandText": "Leggi il resto",
-    "collapseText": "Chiudi testo"
+    "collapseText": "Chiudi testo",
+    "ingredients":"Ingredienti",
+    "steps":"Passaggi"
   }
 }
