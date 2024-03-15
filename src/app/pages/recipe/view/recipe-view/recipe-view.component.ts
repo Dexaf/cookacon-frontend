@@ -7,13 +7,15 @@ import { environment } from '../../../../../environments/environment';
 import { IconsModule } from '../../../../icons.module';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
+import { IslandToolbarComponent } from '../../../../components/island-toolbar/island-toolbar.component';
+import { LoadingSpinnerComponent } from "../../../../components/loading-spinner/loading-spinner.component";
 
 @Component({
-  selector: 'app-recipe-view',
-  standalone: true,
-  imports: [IconsModule, CommonModule, TranslocoModule],
-  templateUrl: './recipe-view.component.html',
-  styleUrls: ['./recipe-view.component.scss']
+    selector: 'app-recipe-view',
+    standalone: true,
+    templateUrl: './recipe-view.component.html',
+    styleUrls: ['./recipe-view.component.scss'],
+    imports: [IconsModule, CommonModule, TranslocoModule, IslandToolbarComponent, LoadingSpinnerComponent]
 })
 export class RecipeViewComponent implements OnInit {
   activeRoute = inject(ActivatedRoute);

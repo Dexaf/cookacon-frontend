@@ -13,7 +13,7 @@
   width: 60vw;
 }
 
-@media only screen and (max-width: $mobile-width) {
+@media only screen and (max-width: $tablet-width) {
   .profile-page-container {
     flex-direction: column;
   }

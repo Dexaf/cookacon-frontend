@@ -1,4 +1,6 @@
 @if (isLoadingRecipe) {
+  <app-loading-spinner>
+  </app-loading-spinner>
 } @else {
   @if (recipe) {
     <div class="recipe-container">
@@ -69,7 +71,10 @@
         </div>
       </div>
     </div>
+    <app-island-toolbar></app-island-toolbar>
   } @else {
-    <!-- TODO SOMETHING WENT WRONG SECTION -->
+    <h1 class="error-message-page">
+      {{"errorCodes.mainProblems.RECIPE_OR_USER_NO_MATCH" | transloco}}
+    </h1>
   }
 }

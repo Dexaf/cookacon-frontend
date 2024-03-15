@@ -1,0 +1,10 @@
+<section [class]="'island animated ' + (isOpen ? 'open' : 'close')">
+  <div id="menu-handler">
+    <i-feather
+      (click)="toggleIslandMenu()"
+      name="chevron-right"
+      [class]="'lg-icon animated ' + (isOpen ? 'right' : 'left')"
+    ></i-feather>
+  </div>
+</section>
+<!-- TODO ADD DYNAMIC FUNCTIONS INPUT AND DRAG AND DROP -->

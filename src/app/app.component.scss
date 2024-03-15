@@ -9,7 +9,7 @@
   }
 }
 
-@media only screen and (max-width: $mobile-width) {
+@media only screen and (max-width: $tablet-width) {
   .router-container {
     & > :first-child {
       width: 95vw;

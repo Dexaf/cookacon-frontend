@@ -1,0 +1,48 @@
+@import "styles";
+
+.island {
+  border: 2px solid rgb(141, 141, 141);
+  background-color: white;
+  border-radius: 40px;
+  display: flex;
+  place-content: end;
+  height: 4rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+
+  &:hover {
+    box-shadow: rgba(28, 28, 32, 0.2) 0px 7px 29px 0px;
+  }
+
+  & > #menu-handler {
+    cursor: pointer;
+  }
+
+  &.open {
+    width: 20vw;
+  }
+
+  &.close {
+    width: 4rem;
+  }
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .island {
+    &.open {
+      width: 50vw;
+    }
+  }
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .island {
+    &.open {
+      left: 2rem;
+      right: 2rem;
+      width: 90vw;
+    }
+  }
+}

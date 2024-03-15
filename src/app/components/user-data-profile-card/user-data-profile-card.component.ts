@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState, UserData } from '@store/interfaces';
 import { getUserData$ } from '@store/selectors';
 import { environment } from '../../../environments/environment';
-import { MOBILE_WIDTH } from '../../models/constants/constants';
+import { TABLET_WIDTH } from '../../models/constants/constants';
 import { CollapsedTextComponent } from '../collapsed-text/collapsed-text.component';
 import { TranslocoModule } from '@ngneat/transloco';
 
@@ -28,11 +28,11 @@ export class UserDataProfileCardComponent implements OnInit {
     else
       this.userDataProfile = "assets/images/default_picture.png";
 
-    this.areWeInMobile = window.innerWidth <= MOBILE_WIDTH
+    this.areWeInMobile = window.innerWidth <= TABLET_WIDTH
   }
 
   @HostListener('window:resize')
   onResize() {
-    this.areWeInMobile = window.innerWidth <= MOBILE_WIDTH
+    this.areWeInMobile = window.innerWidth <= TABLET_WIDTH
   }
 }
