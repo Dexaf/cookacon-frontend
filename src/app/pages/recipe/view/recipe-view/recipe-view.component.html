@@ -71,7 +71,10 @@
         </div>
       </div>
     </div>
-    <app-island-toolbar></app-island-toolbar>
+    <app-island-toolbar
+      [functions]="toolbarFunctions"
+      (event)="eventHandler($event)">
+    </app-island-toolbar>
   } @else {
     <h1 class="error-message-page">
       {{"errorCodes.mainProblems.RECIPE_OR_USER_NO_MATCH" | transloco}}

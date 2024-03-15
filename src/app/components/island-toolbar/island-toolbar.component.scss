@@ -9,6 +9,7 @@
   height: 4rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   position: fixed;
+  align-items: center;
   bottom: 2rem;
   right: 2rem;
 
@@ -16,12 +17,17 @@
     box-shadow: rgba(28, 28, 32, 0.2) 0px 7px 29px 0px;
   }
 
-  & > #menu-handler {
+  & i-feather {
     cursor: pointer;
   }
 
+  & > #menu-handler {
+    display: flex;
+  }
+
   &.open {
-    width: 20vw;
+    width: auto;
+    padding-left: 1rem;
   }
 
   &.close {

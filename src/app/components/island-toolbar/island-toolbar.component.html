@@ -1,4 +1,13 @@
 <section [class]="'island animated ' + (isOpen ? 'open' : 'close')">
+  @if (isOpen) {
+    @for (function of functions; track function.eventName) {
+      <i-feather
+        (click)="emitFunctionEvent(function.eventName)"
+        [name]="function.iconName"
+        class="md-icon animated"
+      ></i-feather>
+    }
+  }
   <div id="menu-handler">
     <i-feather
       (click)="toggleIslandMenu()"

@@ -9,20 +9,23 @@ import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
 import { IslandToolbarComponent } from '../../../../components/island-toolbar/island-toolbar.component';
 import { LoadingSpinnerComponent } from "../../../../components/loading-spinner/loading-spinner.component";
+import { toolbarFunction } from '../../../../models/interfaces/toolbar-function.interface';
 
 @Component({
-    selector: 'app-recipe-view',
-    standalone: true,
-    templateUrl: './recipe-view.component.html',
-    styleUrls: ['./recipe-view.component.scss'],
-    imports: [IconsModule, CommonModule, TranslocoModule, IslandToolbarComponent, LoadingSpinnerComponent]
+  selector: 'app-recipe-view',
+  standalone: true,
+  templateUrl: './recipe-view.component.html',
+  styleUrls: ['./recipe-view.component.scss'],
+  imports: [IconsModule, CommonModule, TranslocoModule, IslandToolbarComponent, LoadingSpinnerComponent]
 })
 export class RecipeViewComponent implements OnInit {
   activeRoute = inject(ActivatedRoute);
   recipesService = inject(RecipesService);
+
   recipe: Recipe | null = null;
   errorOnGet: boolean | null = null;
   isLoadingRecipe: boolean = false;
+  toolbarFunctions: toolbarFunction[] = [];
   providerUrl = environment.providerUrl;
 
   ngOnInit() {
@@ -44,5 +47,16 @@ export class RecipeViewComponent implements OnInit {
               this.recipe = _recipe;
             })
       });
+
+    this.toolbarFunctions = [
+      {
+        iconName: "share-2",
+        eventName: "share"
+      }
+    ]
+  }
+
+  eventHandler(eventName: string) {
+    console.log(eventName);
   }
 }
