@@ -1,0 +1,6 @@
+div > * {
+  cursor: pointer;
+  &:hover {
+    transform: scale(105%);
+  }
+}

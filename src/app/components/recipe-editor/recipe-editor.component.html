@@ -1,0 +1,332 @@
+<form>
+  <!-- RECIPE DATA -->
+  <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
+    {{ "recipes.editor.recipe-data" | transloco }}
+  </h2>
+  <section>
+    <!-- MAIN PICTURE UPLOAD -->
+    <div class="entryContainer">
+      <div class="inputContainer" style="flex-direction: column">
+        <h5
+          class="flex-center-container m-0"
+          style="margin-bottom: 1rem; column-gap: 0.5rem"
+        >
+          <i-feather name="image" class="md-icon stroke-second" />
+          {{ "recipes.editor.mainPicture" | transloco }}
+        </h5>
+        <label for="mainPicture" class="file-upload-wrapper animated">
+          <i-feather name="upload" class="md-icon" />
+          {{ "genericActions.upload-file" | transloco }}
+          <input
+            type="file"
+            name="mainPicture"
+            id="mainPicture"
+            formControlName="mainPicture"
+          />
+        </label>
+      </div>
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "signInModal.errors.username" | transloco }}
+        </li>
+      </ul>
+    </div>
+    <!-- TITLE -->
+    <div class="entryContainer">
+      <div class="inputContainer">
+        <label for="title">
+          <i-feather name="book" class="md-icon stroke-second" />
+          {{ "recipes.editor.title" | transloco }}
+        </label>
+        <input type="text" name="title" id="title" formControlName="title" />
+      </div>
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "recipes.editor.title" | transloco }}
+        </li>
+      </ul>
+    </div>
+    <!-- DESCRIPTION -->
+    <div class="entryContainer">
+      <div class="inputContainer">
+        <label for="description">
+          <i-feather name="book-open" class="md-icon stroke-second" />
+          {{ "recipes.editor.description" | transloco }}
+        </label>
+        <textarea
+          rows="5"
+          cols="50"
+          name="description"
+          id="description"
+          formControlName="description"
+        >
+        </textarea>
+      </div>
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "recipes.editor.description" | transloco }}
+        </li>
+      </ul>
+    </div>
+    <!-- MIN QTA -->
+    <div class="entryContainer">
+      <div class="inputContainer">
+        <label for="minQta">
+          <i-feather name="users" class="md-icon stroke-second" />
+          {{ "recipes.editor.minQta" | transloco }}
+        </label>
+        <input
+          type="number"
+          min="0"
+          name="minQta"
+          id="minQta"
+          formControlName="minQta"
+        />
+      </div>
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "recipes.editor.minQta" | transloco }}
+        </li>
+      </ul>
+    </div>
+    <!-- TIME OF COOKING -->
+    <div class="entryContainer">
+      <div class="inputContainer">
+        <label for="cookingTimeHour">
+          <i-feather name="clock" class="md-icon stroke-second" />
+          {{ "recipes.editor.cookingTime" | transloco }}
+        </label>
+        <div class="flex-center-container" style="column-gap: 1rem">
+          <!-- HOURS -->
+          <div class="inputContainer">
+            <input
+              style="width: 4rem"
+              type="number"
+              name="cookingTimeHour"
+              id="cookingTimeHour"
+              min="0"
+              step="1"
+              formControlName="cookingTime"
+            />
+            <p>{{ "recipes.hours" | transloco }}</p>
+          </div>
+          <!-- MINUTES -->
+          <div class="inputContainer">
+            <input
+              style="width: 4rem"
+              type="number"
+              name="cookingTimeMinute"
+              id="cookingTimeMinute"
+              min="0"
+              max="59"
+              step="1"
+              formControlName="cookingTimeMinute"
+            />
+            <p>{{ "recipes.minutes" | transloco }}</p>
+          </div>
+        </div>
+      </div>
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "recipes.editor.cookingTime" | transloco }}
+        </li>
+      </ul>
+    </div>
+    <!-- TYPE -->
+    <div class="entryContainer">
+      <div class="inputContainer">
+        <label for="type">
+          <i-feather name="coffee" class="md-icon stroke-second" />
+          {{ "recipes.editor.type" | transloco }}
+        </label>
+        <select name="type" id="type" formControlName="type">
+          <option value="ND">
+            {{ "generics.selectAnOption" | transloco }}
+          </option>
+          @for (enum of recipeTypes | keyvalue; track enum) {
+            <option [value]="enum.value">
+              {{ "recipes.types." + enum.value | transloco }}
+            </option>
+          }
+        </select>
+      </div>
+      <ul class="errorContainer">
+        <li class="errorMessage m-0">
+          {{ "recipes.editor.type" | transloco }}
+        </li>
+      </ul>
+    </div>
+  </section>
+  <br>
+  <!-- INGREDIENTS DATA -->
+  <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
+    {{ "recipes.editor.ingredients.title" | transloco }}
+  </h2>
+  <!-- TODO - LISTA INGREDIENTI CANCELLABILE, MODIFICABILE E MAGARI DRAGGABILE -->
+  <section>
+    <div class="flex-center-container">
+      <!-- SX -->
+      <!-- INGREDIENT PICTURE -->
+      <div class="entryContainer">
+        <div class="inputContainer" style="flex-direction: column">
+          <h5
+            class="flex-center-container m-0"
+            style="margin-bottom: 1rem; column-gap: 0.5rem"
+          >
+            <i-feather name="image" class="md-icon stroke-second" />
+            {{ "recipes.editor.ingredients.picture" | transloco }}
+          </h5>
+          <label for="ingredientPicture" class="file-upload-wrapper animated">
+            <i-feather name="upload" class="md-icon" />
+            {{ "genericActions.upload-file" | transloco }}
+            <input
+              type="file"
+              name="ingredientPicture"
+              id="ingredientPicture"
+              formControlName="ingredientPicture"
+            />
+          </label>
+        </div>
+        <ul class="errorContainer">
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.username" | transloco }}
+          </li>
+        </ul>
+      </div>
+      <!-- DX -->
+      <div>
+        <!-- NAME -->
+        <div class="entryContainer">
+          <div class="inputContainer">
+            <label for="ingredient-name">
+              <i-feather name="book" class="md-icon stroke-second" />
+              {{ "recipes.editor.ingredients.name" | transloco }}
+            </label>
+            <input
+              type="text"
+              name="ingredient-name"
+              id="ingredient-name"
+              formControlName="ingredient-name"
+            />
+          </div>
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.ingredients.name" | transloco }}
+            </li>
+          </ul>
+        </div>
+        <!-- QTA -->
+        <div class="entryContainer">
+          <div class="inputContainer">
+            <label for="qta">
+              <i-feather name="archive" class="md-icon stroke-second" />
+              {{ "recipes.editor.ingredients.qta" | transloco }}
+            </label>
+            <input type="text" name="qta" id="qta" formControlName="qta" />
+          </div>
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.title" | transloco }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- BOTTONE AGGIUNGI -->
+    <div class="flex-center-container">
+      <button
+        class="button-secondary animated"
+        style="display: flex; align-items: center; column-gap: 0.5rem"
+      >
+        <i-feather class="sm-icon stroke-second" name="plus"></i-feather>
+        {{ "generics.add" | transloco }}
+      </button>
+    </div>
+  </section>
+  <br>
+  <!-- STEPS DATA -->
+  <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
+    {{ "recipes.editor.steps.title-section" | transloco }}
+  </h2>
+  <!-- TODO - LISTA STEPS CANCELLABILE, MODIFICABILE E MAGARI DRAGGABILE -->
+  <section>
+    <div class="flex-center-container">
+      <!-- SX -->
+      <!-- STEPS PICTURE -->
+      <div class="entryContainer">
+        <div class="inputContainer" style="flex-direction: column">
+          <h5
+            class="flex-center-container m-0"
+            style="margin-bottom: 1rem; column-gap: 0.5rem"
+          >
+            <i-feather name="image" class="md-icon stroke-second" />
+            {{ "recipes.editor.ingredients.picture" | transloco }}
+          </h5>
+          <label for="stepPicture" class="file-upload-wrapper animated">
+            <i-feather name="upload" class="md-icon" />
+            {{ "genericActions.upload-file" | transloco }}
+            <input
+              type="file"
+              name="stepPicture"
+              id="stepPicture"
+              formControlName="stepPicture"
+            />
+          </label>
+        </div>
+        <ul class="errorContainer">
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.username" | transloco }}
+          </li>
+        </ul>
+      </div>
+      <!-- DX -->
+      <div>
+        <!-- TITLE -->
+        <div class="entryContainer">
+          <div class="inputContainer">
+            <label for="step-title">
+              <i-feather name="book" class="md-icon stroke-second" />
+              {{ "recipes.editor.steps.title" | transloco }}
+            </label>
+            <input
+              type="text"
+              name="step-title"
+              id="step-title"
+              formControlName="step-title"
+            />
+          </div>
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.ingredients.name" | transloco }}
+            </li>
+          </ul>
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="entryContainer">
+          <div class="inputContainer">
+            <label for="step-description">
+              <i-feather name="book-open" class="md-icon stroke-second" />
+              {{ "recipes.editor.steps.description" | transloco }}
+            </label>
+            <input type="text" name="step-description" id="step-description" formControlName="step-description" />
+          </div>
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.title" | transloco }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- BOTTONE AGGIUNGI -->
+    <div class="flex-center-container">
+      <button
+        class="button-secondary animated"
+        style="display: flex; align-items: center; column-gap: 0.5rem"
+      >
+        <i-feather class="sm-icon stroke-second" name="plus"></i-feather>
+        {{ "generics.add" | transloco }}
+      </button>
+    </div>
+  </section>
+</form>

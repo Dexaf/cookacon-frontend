@@ -20,7 +20,6 @@ export class IslandToolbarComponent {
   }
 
   emitFunctionEvent(eventName: string) {
-    //TODO handle event
     this.event.emit(eventName);
   }
 }

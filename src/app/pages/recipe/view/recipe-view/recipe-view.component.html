@@ -1,6 +1,5 @@
 @if (isLoadingRecipe) {
-  <app-loading-spinner>
-  </app-loading-spinner>
+  <app-loading-spinner> </app-loading-spinner>
 } @else {
   @if (recipe) {
     <div class="recipe-container">
@@ -25,7 +24,10 @@
                 {{ "recipes.hours" | transloco | titlecase }}
               </span>
               <span>
-                <i-feather name="coffee" class="sm-icon stroke-grey"></i-feather>
+                <i-feather
+                  name="coffee"
+                  class="sm-icon stroke-grey"
+                ></i-feather>
                 {{ "recipes.types." + recipe.type | transloco | titlecase }}
               </span>
               <span>
@@ -37,6 +39,16 @@
         </section>
         <!-- DESCRIPTORS -->
         <div>
+          <!-- MADE BY SECTION -->
+          <div>
+            <p>
+              {{ "recipes.madeby" | transloco }}:
+              <a [routerLink]="['/user', recipe.userId._id]"
+                >{{ recipe.userId.username }} - {{ recipe.userId.surname }}
+                {{ recipe.userId.name }}
+              </a>
+            </p>
+          </div>
           <!-- DESCRIPTIONS -->
           <p>{{ recipe.description }}</p>
           <!-- INGREDIENTS -->
@@ -71,13 +83,25 @@
         </div>
       </div>
     </div>
+    <!-- TOOLBAR -->
     <app-island-toolbar
       [functions]="toolbarFunctions"
-      (event)="eventHandler($event)">
+      (event)="eventHandler($event)"
+    >
     </app-island-toolbar>
+
+    <!-- MODALS -->
+    @if (isShareModalOpened) {
+      <app-modal-wrapper
+        [modalSize]="'sm'"
+        (onModalClose)="isShareModalOpened = false"
+      >
+        <app-share-link body [sharedLink]="currentUrl"> </app-share-link>
+      </app-modal-wrapper>
+    }
   } @else {
     <h1 class="error-message-page">
-      {{"errorCodes.mainProblems.RECIPE_OR_USER_NO_MATCH" | transloco}}
+      {{ "errorCodes.mainProblems.RECIPE_OR_USER_NO_MATCH" | transloco }}
     </h1>
   }
 }

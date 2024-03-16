@@ -6,6 +6,7 @@ export const initialState: AppState = {
   isLoginModalOpened: false,
   isSigninModalOpened: false,
   currentUser: {
+    id: null,
     authToken: null,
     name: null,
     surname: null,

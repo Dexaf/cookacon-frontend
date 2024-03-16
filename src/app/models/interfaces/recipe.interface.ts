@@ -1,6 +1,6 @@
 export interface Recipe {
   _id: string
-  userId: UserId 
+  userId: UserId
   title: string
   uploadData: string
   description: string

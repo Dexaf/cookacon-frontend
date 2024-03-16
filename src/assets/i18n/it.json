@@ -29,14 +29,38 @@
     }
   },
   "recipes": {
-    "types":{
+    "editor": {
+      "mainPicture": "Foto delle ricetta",
+      "title": "Titolo",
+      "description": "Descrizione",
+      "recipe-data": "Dati della ricetta",
+      "minQta": "Per quante persone",
+      "cookingTime": "Tempo di cottura",
+      "type": "Tipo di portata",
+      "ingredients":{
+        "title": "Ingredienti",
+        "picture": "Foto dell'ingrediente",
+        "name": "Nome",
+        "qta": "Quantita"
+      },
+      "steps":{
+        "title-section": "Passaggi",
+        "picture": "Foto del passaggio",
+        "title": "Titolo",
+        "description": "Descrizione"
+
+      }
+    },
+    "types": {
       "STARTER": "antipasto",
       "FIRST_COURSE": "primo piatto",
       "SECOND_COURSE": "secondo piatto",
       "DESSERT": "dessert",
       "CONTOUR": "contorno"
     },
-    "hours": "ore"
+    "hours": "ore",
+    "minutes": "minuti",
+    "madeby": "Fatta da"
   },
   "errorCodes": {
     "FAILED_CONNECTION_TO_PROVIDER": {
@@ -62,10 +86,16 @@
   "genericErrors": {
     "required": "Il campo non puo' essere vuoto."
   },
+  "genericActions": {
+    "upload-file": "Carica file"
+  },
   "generics": {
+    "selectAnOption": "Seleziona un opzione",
     "expandText": "Leggi il resto",
     "collapseText": "Chiudi testo",
-    "ingredients":"Ingredienti",
-    "steps":"Passaggi"
+    "ingredients": "Ingredienti",
+    "steps": "Passaggi",
+    "copied": "Testo copiato!",
+    "add":"Aggiungi"
   }
 }

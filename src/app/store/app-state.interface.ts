@@ -7,6 +7,7 @@ export interface AppState {
 }
 
 export interface UserData {
+  id: string | null,
   authToken: string | null,
   name: string | null;
   surname: string | null;

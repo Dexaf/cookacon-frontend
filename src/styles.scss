@@ -108,9 +108,7 @@ button {
   column-gap: 1rem;
 }
 
-.horizontal-card
-
-.lg-width {
+.horizontal-card .lg-width {
   width: 75vw;
 }
 
@@ -222,8 +220,17 @@ form {
       column-gap: 0.8rem;
     }
 
+    & > select {
+      height: 3rem;
+      border-radius: 5px;
+    }
     & > input {
       height: 2rem;
+    }
+
+    & > input,
+    & > select,
+    & > textarea {
       font-size: 1.5rem;
       padding: 0.2rem 0.4rem;
       border-width: 0 0 2px 0;
@@ -236,10 +243,13 @@ form {
       &.ng-dirty.ng-touched.ng-valid {
         background-color: rgba(0, 255, 8, 0.219);
       }
+    }
+  }
 
-      &:read-only {
-        background-color: rgba(0, 0, 0, 0.219);
-      }
+  & > input,
+  & > textarea {
+    &:read-only {
+      background-color: rgba(0, 0, 0, 0.219);
     }
   }
 
@@ -247,6 +257,27 @@ form {
     opacity: 0.5;
     color: lightgray;
     background-color: gray;
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-upload-wrapper {
+  cursor: pointer;
+  background-color: $primary-color;
+  border: 5px dashed $secondary-color;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+
+  &:hover {
+    & > i-feather {
+      stroke: $primary-color;
+    }
+    color: $primary-color;
+    background-color: $secondary-color;
+    border-color: $primary-color;
   }
 }
 
@@ -326,7 +357,7 @@ form {
     }
   }
 
-  .center-mobile{
+  .center-mobile {
     text-align: center;
   }
 }

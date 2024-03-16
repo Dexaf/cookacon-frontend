@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
-import { Calendar, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, Coffee, Edit, Key, Mail, Repeat, Share2, User, Users, X,  } from 'angular-feather/icons';
+import { Archive, Book, BookOpen, Calendar, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, Coffee, Copy, Edit, Facebook, Image, Key, Mail, Plus, Repeat, Share2, Twitter, Upload, User, Users, X,  } from 'angular-feather/icons';
 
 const icons = {
   X,
@@ -17,7 +17,16 @@ const icons = {
   ChevronRight, 
   ChevronUp, 
   Edit,
-  Share2
+  Share2,
+  Facebook,
+  Twitter,
+  Copy,
+  Image,
+  Upload,
+  Book,
+  BookOpen,
+  Archive,
+  Plus
 }
 
 @NgModule({
