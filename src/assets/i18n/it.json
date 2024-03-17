@@ -30,6 +30,8 @@
   },
   "recipes": {
     "editor": {
+      "addRecipe":"Aggiungi ricetta",
+      "modifyRecipe":"Salva modifiche",
       "mainPicture": "Foto delle ricetta",
       "title": "Titolo",
       "description": "Descrizione",

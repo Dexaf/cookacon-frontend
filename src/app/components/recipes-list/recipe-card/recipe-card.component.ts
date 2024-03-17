@@ -29,6 +29,6 @@ export class RecipeCardComponent {
   }
 
   modifyRecipe() {
-    alert("modify");
+    this.router.navigate(['recipe/:userId/:recipeId/edit'.replace(':recipeId', this.recipe._id).replace(':userId', this.recipe.userId._id)]);
   }
 }
