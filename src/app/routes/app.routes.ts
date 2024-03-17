@@ -23,7 +23,7 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'recipe/:userId/:recipeId/edit',
+    path: 'recipe/editor',
     component: RecipeEditComponent,
     canActivate: [authGuard],
     pathMatch: 'full'

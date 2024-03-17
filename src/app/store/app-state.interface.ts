@@ -2,7 +2,7 @@ import { CountryCodesEnum } from "../models/enums/countryCodes.enum";
 
 export interface AppState {
   isLoginModalOpened: boolean,
-  isSigninModalOpened: boolean
+  isSigninModalOpened: boolean,
   currentUser: UserData
 }
 

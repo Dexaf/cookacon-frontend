@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
 import { Router } from '@angular/router';
 import { Recipe, UserId } from '../../../models/interfaces/recipe.interface';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-recipe-card',
@@ -19,6 +20,7 @@ import { Recipe, UserId } from '../../../models/interfaces/recipe.interface';
 })
 export class RecipeCardComponent {
   router = inject(Router);
+  store = inject(Store);
   @Input() recipe!: Recipe;
   @Input() canModify: boolean = false;
 
@@ -29,6 +31,11 @@ export class RecipeCardComponent {
   }
 
   modifyRecipe() {
-    this.router.navigate(['recipe/:userId/:recipeId/edit'.replace(':recipeId', this.recipe._id).replace(':userId', this.recipe.userId._id)]);
+    this.router.navigate(['recipe/editor'], {
+      queryParams: {
+        edit: true, 
+        recipeId: this.recipe._id
+      }
+    });
   }
 }

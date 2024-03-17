@@ -93,7 +93,12 @@ export class RecipeViewComponent implements OnInit {
         this.activeRoute.params
         .pipe(take(1))
         .subscribe(params => {
-          this.router.navigate(['/recipe', params["userId"], params["recipeId"], 'edit'])
+          this.router.navigate(['recipe/editor'], {
+            queryParams: {
+              edit: true, 
+              recipeId: params["recipeId"]
+            }
+          });
         })
         break;
     }
