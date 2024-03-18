@@ -1,2 +1,7 @@
-<app-recipe-editor>
-</app-recipe-editor>
+@if (isLoadingEditorState) {
+  <app-loading-spinner> </app-loading-spinner>
+} @else {
+  <app-recipe-editor [editMode]="isEditing" [recipeData]="recipe ?? undefined">
+  </app-recipe-editor>
+}
+{{ isLoadingEditorState }}

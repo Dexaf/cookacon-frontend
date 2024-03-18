@@ -91,15 +91,16 @@ export class RecipeViewComponent implements OnInit {
         break;
       case "edit":
         this.activeRoute.params
-        .pipe(take(1))
-        .subscribe(params => {
-          this.router.navigate(['recipe/editor'], {
-            queryParams: {
-              edit: true, 
-              recipeId: params["recipeId"]
-            }
-          });
-        })
+          .pipe(take(1))
+          .subscribe(params => {
+            localStorage.setItem("currentRecipe", JSON.stringify(this.recipe));
+            this.router.navigate(['recipe/editor'], {
+              queryParams: {
+                edit: true,
+                recipeId: params["recipeId"]
+              }
+            });
+          })
         break;
     }
   }

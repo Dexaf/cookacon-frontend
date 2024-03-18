@@ -4,7 +4,7 @@ import { IconsModule } from '../../../icons.module';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
 import { Router } from '@angular/router';
-import { Recipe, UserId } from '../../../models/interfaces/recipe.interface';
+import { Recipe } from '../../../models/interfaces/recipe.interface';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -31,9 +31,11 @@ export class RecipeCardComponent {
   }
 
   modifyRecipe() {
-    this.router.navigate(['recipe/editor'], {
+    localStorage.setItem("currentRecipe", JSON.stringify(this.recipe));
+    this.router
+    .navigate(['recipe/editor'], {
       queryParams: {
-        edit: true, 
+        edit: true,
         recipeId: this.recipe._id
       }
     });

@@ -21,8 +21,9 @@ export class RecipeEditorComponent implements OnInit {
 
   @Input() editMode = false;
   @Input() recipeData?: Recipe;
-  recipeEditLoading = false;
+
   recipeTypes = RecipeType;
+
   recipeForm = this.formGroup.group({
     mainPicture: [null, [Validators.required]],
     title: ['', [Validators.required]],
@@ -34,49 +35,17 @@ export class RecipeEditorComponent implements OnInit {
   })
   isEditing: boolean = false;
 
-
   ngOnInit(): void {
-    this.activedRoute.queryParams.subscribe(qp => {
-      debugger
-      if (qp["edit"] == true)
-        this.isEditing = true;
-      else if (qp["add"] == true)
-        this.isEditing = false;
-      else {
-        this.router.navigate([],
-          {
-            relativeTo: this.activedRoute,
-            queryParams: { add: 'true' },
-            queryParamsHandling: 'merge'
-          });
-        this.isEditing = false;
-      }
-
-      if (this.isEditing === true) {
-        //this.recipeForm.controls.mainPicture.setValue(this.recipeData?.mainPictureUrl ?? null);
-        this.recipeForm.controls.title.setValue(this.recipeData?.title ?? null);
-        this.recipeForm.controls.description.setValue(this.recipeData?.description ?? null);
-        this.recipeForm.controls.minQta.setValue(this.recipeData?.minQta ?? 1);
-
-        const times = this.recipeData?.cookingTime.split(":");
-
-        if (times && times.length > 0) {
-          this.recipeForm.controls.cookingTime.setValue(parseInt(times[0]) ?? 0);
-          this.recipeForm.controls.cookingTimeMinute.setValue(parseInt(times[0]) ?? 0);
-        }
-        const type = Object.keys(this.recipeTypes).find(v => v === this.recipeForm.controls.type.value)
-        this.recipeForm.controls.type.setValue(type ?? "ND");
-      }
-    })
-
-    this.recipeData
+    if (this.editMode && this.recipeData) {
+      this.loadRecipeData(this.recipeData)
+    }
   }
 
   submitRecipeEditForm() {
-    if (!this.isFormValid()) {
-
-    } else {
-
+    if (!this.isFormValid())
+      return
+    else {
+      console.log("go on");
     }
   }
 
@@ -92,5 +61,21 @@ export class RecipeEditorComponent implements OnInit {
       }
 
     return true;
+  }
+
+  loadRecipeData(recipeData: Recipe) {
+    //this.recipeForm.controls.mainPicture.setValue(this.recipeData?.mainPictureUrl ?? null);
+    this.recipeForm.controls.title.setValue(recipeData?.title ?? null);
+    this.recipeForm.controls.description.setValue(recipeData?.description ?? null);
+    this.recipeForm.controls.minQta.setValue(recipeData?.minQta ?? 1);
+
+    const times = recipeData?.cookingTime.split(":");
+
+    if (times && times.length > 0) {
+      this.recipeForm.controls.cookingTime.setValue(parseInt(times[0]) ?? 0);
+      this.recipeForm.controls.cookingTimeMinute.setValue(parseInt(times[1]) ?? 0);
+    }
+    const type = Object.keys(this.recipeTypes).find(v => v === recipeData.type)
+    this.recipeForm.controls.type.setValue(type ?? "ND");
   }
 }
