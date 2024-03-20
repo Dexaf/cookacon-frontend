@@ -4,7 +4,7 @@
 <p [innerHTML]="'signInModal.description' | transloco"></p>
 <form [formGroup]="signInForm" (ngSubmit)="submitSignInForm()">
   <!-- USERNAME -->
-  <div class="entryContainer">
+  <div class="entryContainer" style="margin-bottom: 1rem;">
     <div class="inputContainer">
       <label for="email">
         <i-feather name="user" class="md-icon stroke-second" />
@@ -28,7 +28,7 @@
     }
   </div>
   <!-- PASSWORD -->
-  <div class="entryContainer">
+  <div class="entryContainer" style="margin-bottom: 1rem;">
     <div class="inputContainer">
       <label for="password">
         <i-feather name="key" class="md-icon stroke-second" />

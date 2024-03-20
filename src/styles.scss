@@ -75,6 +75,7 @@ button {
 }
 
 textarea {
+  font-size: 0.8rem;
   font-family: "Poppins R";
 }
 
@@ -204,7 +205,6 @@ i-feather {
 
 form {
   .entryContainer {
-    margin: 1.5rem 1rem;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -214,6 +214,11 @@ form {
     column-gap: 0.8rem;
     align-items: center;
 
+    &.row-input {
+      flex-direction: column;
+      row-gap: 0.5rem;
+      align-items: start;
+    }
     & > label {
       font-family: "Poppins R";
       font-size: 1.5rem;
