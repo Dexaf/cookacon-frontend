@@ -34,7 +34,7 @@ export const routes: Routes = [
   // }
   {
     path: '**',
-    component: HomeComponent,
+    redirectTo: '/',
     pathMatch: 'full'
   },
 ];

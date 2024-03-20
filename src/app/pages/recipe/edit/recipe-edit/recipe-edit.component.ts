@@ -78,16 +78,16 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         this.recipe = parsedRecipe
         this.isLoadingEditorState = false;
         return;
+      } else {
+        const getRecipeSub = this.recipesService.getRecipe(userId, recipeId)
+          .subscribe(r => {
+            this.recipe = r;
+            this.isLoadingEditorState = false;
+          })
+
+        this.subscriptions.push(getRecipeSub);
       }
     }
-
-    const getRecipeSub = this.recipesService.getRecipe(userId, recipeId)
-      .subscribe(r => {
-        this.recipe = r;
-        this.isLoadingEditorState = false;
-      })
-      
-    this.subscriptions.push(getRecipeSub);
   }
 
   ngOnDestroy(): void {

@@ -6,11 +6,12 @@ import { RecipeType } from '../../models/enums/recipeTypes.enum';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ImageUploadComponent } from '../image-upload/image-upload.component';
 
 @Component({
   selector: 'app-recipe-editor',
   standalone: true,
-  imports: [IconsModule, TranslocoModule, CommonModule, ReactiveFormsModule],
+  imports: [IconsModule, TranslocoModule, CommonModule, ReactiveFormsModule, ImageUploadComponent],
   templateUrl: './recipe-editor.component.html',
   styleUrls: ['./recipe-editor.component.scss', '../../../styles.scss']
 })
@@ -36,6 +37,7 @@ export class RecipeEditorComponent implements OnInit {
   isEditing: boolean = false;
 
   ngOnInit(): void {
+    
     if (this.editMode && this.recipeData) {
       this.loadRecipeData(this.recipeData)
     }

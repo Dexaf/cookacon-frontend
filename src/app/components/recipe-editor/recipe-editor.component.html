@@ -6,25 +6,12 @@
   <section>
     <!-- MAIN PICTURE UPLOAD -->
     <div class="entryContainer">
-      <div class="inputContainer" style="flex-direction: column">
-        <h5
-          class="flex-center-container m-0"
-          style="margin-bottom: 1rem; column-gap: 0.5rem"
-        >
-          <i-feather name="image" class="md-icon stroke-second" />
-          {{ "recipes.editor.mainPicture" | transloco }}
-        </h5>
-        <label for="mainPicture" class="file-upload-wrapper animated">
-          <i-feather name="upload" class="md-icon" />
-          {{ "genericActions.upload-file" | transloco }}
-          <input
-            type="file"
-            name="mainPicture"
-            id="mainPicture"
-            formControlName="mainPicture"
-          />
-        </label>
-      </div>
+      <app-image-upload
+        formControlName="mainPicture"
+        [label]="'recipes.editor.mainPicture' | transloco"
+        [inputName]="'mainPicture'"
+      >
+      </app-image-upload>
       <ul class="errorContainer">
         <li class="errorMessage m-0">
           {{ "signInModal.errors.username" | transloco }}
@@ -338,7 +325,8 @@
     <button
       class="button-primary animated"
       style="display: flex; align-items: center; column-gap: 0.5rem"
-      [disabled]="!recipeForm.valid">
+      [disabled]="!recipeForm.valid"
+    >
       @if (isEditing) {
         <i-feather class="sm-icon stroke-primary" name="save"></i-feather>
         {{ "recipes.editor.modifyRecipe" | transloco }}

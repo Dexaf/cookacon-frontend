@@ -275,13 +275,29 @@ input[type="file"] {
   border-radius: 20px;
   padding: 1.5rem 2rem;
 
-  &:hover {
+  &.active:hover {
     & > i-feather {
       stroke: $primary-color;
     }
     color: $primary-color;
     background-color: $secondary-color;
     border-color: $primary-color;
+  }
+
+  &.disabled {
+    color: #565656 !important;
+    & > i-feather {
+      stroke: #565656 !important;
+    }
+    &:hover {
+      color: #565656 !important;
+      & > i-feather {
+        stroke: #565656 !important;
+      }
+    }
+    cursor: not-allowed;
+    background-color: lightgray;
+    border-color: grey;
   }
 }
 

@@ -1,0 +1,53 @@
+<div class="inputContainer" style="flex-direction: column">
+  <h5
+    class="flex-center-container m-0"
+    style="margin-bottom: 1rem; column-gap: 0.5rem"
+  >
+    <i-feather name="image" class="md-icon stroke-second" />
+    {{ label }}
+  </h5>
+  <label
+    style="position: relative"
+    [for]="inputName"
+    [class]="
+      'file-upload-wrapper animated ' + (disabled ? 'disabled' : 'active')
+    "
+  >
+    @if (loadingPictures) {
+      <app-loading-spinner></app-loading-spinner>
+    }
+    <i-feather name="upload" class="md-icon" />
+    {{ "genericActions.upload-file" | transloco }}
+    <input
+      [disabled]="disabled"
+      type="file"
+      accept="image/*"
+      [multiple]="multiple"
+      [name]="inputName"
+      [id]="inputName"
+      (change)="onChange($event)"
+    />
+  </label>
+
+  <div class="file-thumbnail-container">
+    @for (currentFile of currentFiles; track $index) {
+      <div class="file-thumbnail">
+        <img [src]="currentFile.value" />
+        <section>
+          <span>
+            @if (currentFile.name.length > 8) {
+              {{ currentFile.name | slice: 0 : 8 }}...
+            } @else {
+              {{ currentFile.name }}
+            }
+          </span>
+          <feather-icon
+            (click)="deletePicture($index)"
+            name="x"
+            class="xs-icon clickable"
+          ></feather-icon>
+        </section>
+      </div>
+    }
+  </div>
+</div>
