@@ -22,7 +22,7 @@ export class ImageUploadComponent {
   @Input() label: string = "";
   @Input() inputName: string = "";
   @Input() multiple: boolean = false;
-  @Output() changeEvent: EventEmitter<customFile[]> = new EventEmitter();
+  @Output() photoUploaded: EventEmitter<customFile[]> = new EventEmitter();
   disabled = false;
   loadingPictures = false;
   currentFiles: customFile[] = [];
@@ -39,7 +39,7 @@ export class ImageUploadComponent {
           this.currentFiles.push({ value, name: file.name });
           if (!this.multiple)
             this.disabled = true;
-          this.changeEvent.emit(this.currentFiles)
+          this.photoUploaded.emit(this.currentFiles)
         }
 
       }
