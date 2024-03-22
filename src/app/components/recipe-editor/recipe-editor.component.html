@@ -1,5 +1,5 @@
+<!-- RECIPE DATA -->
 <form [formGroup]="recipeForm" (ngSubmit)="submitRecipeEditForm()">
-  <!-- RECIPE DATA -->
   <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
     {{ "recipes.editor.recipe-data" | transloco }}
   </h2>
@@ -150,8 +150,9 @@
       </ul>
     </div>
   </section>
-  <br />
-  <!-- INGREDIENTS DATA -->
+</form>
+<!-- INGREDIENTS DATA -->
+<form [formGroup]="ingredientForm" (ngSubmit)="addIngredient()">
   <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
     {{ "recipes.editor.ingredients.title" | transloco }}
   </h2>
@@ -173,7 +174,7 @@
             type="text"
             name="ingredient-name"
             id="ingredient-name"
-            formControlName="ingredient-name"
+            formControlName="ingredientName"
           />
         </div>
         <ul class="errorContainer">
@@ -189,7 +190,12 @@
             <i-feather name="archive" class="md-icon stroke-second" />
             {{ "recipes.editor.ingredients.qta" | transloco }}
           </label>
-          <input type="text" name="qta" id="qta" formControlName="qta" />
+          <input
+            type="text"
+            name="qta"
+            id="qta"
+            formControlName="ingredientQta"
+          />
         </div>
         <ul class="errorContainer">
           <li class="errorMessage m-0">
@@ -203,6 +209,7 @@
       <app-image-upload
         [label]="'recipes.editor.ingredients.picture' | transloco"
         [inputName]="'ingredientPicture'"
+        (photoUploaded)="getIngredientUploadedPhoto($event)"
       >
       </app-image-upload>
       <ul class="errorContainer">
@@ -214,6 +221,7 @@
     <!-- BOTTONE AGGIUNGI -->
     <div class="flex-center-container">
       <button
+        [disabled]="!ingredientForm.valid"
         class="button-secondary animated"
         style="display: flex; align-items: center; column-gap: 0.5rem"
       >
@@ -222,8 +230,10 @@
       </button>
     </div>
   </section>
-  <br />
-  <!-- STEPS DATA -->
+</form>
+<br>
+<!-- STEPS DATA -->
+<form [formGroup]="stepsForm" (ngSubmit)="addStep()">
   <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
     {{ "recipes.editor.steps.title-section" | transloco }}
   </h2>
@@ -245,7 +255,7 @@
             type="text"
             name="step-title"
             id="step-title"
-            formControlName="step-title"
+            formControlName="stepTitle"
           />
         </div>
         <ul class="errorContainer">
@@ -265,7 +275,7 @@
             type="text"
             name="step-description"
             id="step-description"
-            formControlName="step-description"
+            formControlName="stepDescription"
           />
         </div>
         <ul class="errorContainer">
@@ -280,6 +290,7 @@
       <app-image-upload
         [label]="'recipes.editor.steps.picture' | transloco"
         [inputName]="'stepPicture'"
+        (photoUploaded)="getStepUploadedPhoto($event)"
       >
       </app-image-upload>
       <ul class="errorContainer">
@@ -293,26 +304,27 @@
       <button
         class="button-secondary animated"
         style="display: flex; align-items: center; column-gap: 0.5rem"
+        [disabled]="!stepsForm.valid"
       >
         <i-feather class="sm-icon stroke-second" name="plus"></i-feather>
         {{ "generics.add" | transloco }}
       </button>
     </div>
   </section>
-  <hr style="margin: 2rem;">
-  <div style="margin-top: 2rem" class="flex-center-container">
-    <button
-      class="button-primary animated"
-      style="display: flex; align-items: center; column-gap: 0.5rem"
-      [disabled]="!recipeForm.valid"
-    >
-      @if (isEditing) {
-        <i-feather class="sm-icon stroke-primary" name="save"></i-feather>
-        {{ "recipes.editor.modifyRecipe" | transloco }}
-      } @else {
-        <i-feather class="sm-icon stroke-primary" name="plus"></i-feather>
-        {{ "recipes.editor.addRecipe" | transloco }}
-      }
-    </button>
-  </div>
 </form>
+<hr style="margin: 2rem" />
+<div style="margin-top: 2rem" class="flex-center-container">
+  <button
+    class="button-primary animated"
+    style="display: flex; align-items: center; column-gap: 0.5rem"
+    [disabled]="!recipeForm.valid"
+  >
+    @if (editMode) {
+      <i-feather class="sm-icon stroke-primary" name="save"></i-feather>
+      {{ "recipes.editor.modifyRecipe" | transloco }}
+    } @else {
+      <i-feather class="sm-icon stroke-primary" name="plus"></i-feather>
+      {{ "recipes.editor.addRecipe" | transloco }}
+    }
+  </button>
+</div>
