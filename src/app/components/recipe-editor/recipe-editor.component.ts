@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { Recipe } from '../../models/interfaces/recipe.interface';
 import { IconsModule } from '../../icons.module';
 import { TranslocoModule } from '@ngneat/transloco';
@@ -15,7 +15,7 @@ import { ImageUploadComponent } from '../image-upload/image-upload.component';
   templateUrl: './recipe-editor.component.html',
   styleUrls: ['./recipe-editor.component.scss', '../../../styles.scss']
 })
-export class RecipeEditorComponent implements OnInit {
+export class RecipeEditorComponent implements OnChanges {
   formGroup = inject(FormBuilder);
   activedRoute = inject(ActivatedRoute);
   router = inject(Router);
@@ -36,11 +36,10 @@ export class RecipeEditorComponent implements OnInit {
   })
   isEditing: boolean = false;
 
-  ngOnInit(): void {
-    
+  ngOnChanges(changes: SimpleChanges) {
     if (this.editMode && this.recipeData) {
       this.loadRecipeData(this.recipeData)
-    }
+    };
   }
 
   submitRecipeEditForm() {
