@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { customFile, ImageUploadComponent } from '../image-upload/image-upload.component';
+import { InfoCardComponent } from '../info-card/info-card.component';
 
 @Component({
   selector: 'app-recipe-editor',
   standalone: true,
-  imports: [IconsModule, TranslocoModule, CommonModule, ReactiveFormsModule, ImageUploadComponent, FormsModule],
+  imports: [IconsModule, TranslocoModule, CommonModule, ReactiveFormsModule, ImageUploadComponent, InfoCardComponent, FormsModule],
   templateUrl: './recipe-editor.component.html',
   styleUrls: ['./recipe-editor.component.scss', '../../../styles.scss']
 })

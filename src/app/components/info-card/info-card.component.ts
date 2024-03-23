@@ -6,19 +6,17 @@ import { Component, Input } from '@angular/core';
   imports: [],
   template: `
     <section [class]="'card ' + (isHorizontal ? 'horizontal' : 'vertical')">
-      <div>
       @if(image) {
         <img [src]="image">
       }
-      </div>
       <div>
       @if(title) {
-        <h5>
+        <h5 class="m-0">
           {{title}}
         </h5>
       } 
       @if(description) {
-        <p>
+        <p class="m-0">
           {{description}}
         </p>
       } 
