@@ -8,6 +8,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { ActivatedRoute, Router } from '@angular/router';
 import { customFile, ImageUploadComponent } from '../image-upload/image-upload.component';
 import { InfoCardComponent } from '../info-card/info-card.component';
+import { ingredientDtoOut, stepDtoOut } from '../../models/dtos/out/recipe.dto.out.interface';
 
 @Component({
   selector: 'app-recipe-editor',
@@ -44,6 +45,7 @@ export class RecipeEditorComponent implements OnChanges {
     ingredientPicture: [false, [Validators.requiredTrue]],
   })
   ingredientPicture: customFile | null = null;
+  ingredients: ingredientDtoOut[] = [];
 
   //steps form
   stepsForm = this.formGroup.group({
@@ -52,6 +54,7 @@ export class RecipeEditorComponent implements OnChanges {
     stepPicture: [false, [Validators.requiredTrue]],
   })
   stepPicture: customFile | null = null;
+  steps: stepDtoOut[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.editMode && this.recipeData) {
@@ -96,11 +99,20 @@ export class RecipeEditorComponent implements OnChanges {
     }
   }
 
-  addStep() {
-    throw new Error('Method not implemented.');
-  }
   addIngredient() {
-    throw new Error('Method not implemented.');
+    this.ingredients.push({
+      name: this.stepsForm.controls.stepTitle.value!,
+      qta: this.stepsForm.controls.stepDescription.value!,
+      imageBase64: this.stepPicture?.value!
+    })
+  }
+
+  addStep() {
+    this.steps.push({
+      title: this.stepsForm.controls.stepTitle.value!,
+      description: this.stepsForm.controls.stepDescription.value!,
+      imageBase64: this.stepPicture?.value!
+    })
   }
 
   submitRecipeEditForm() {

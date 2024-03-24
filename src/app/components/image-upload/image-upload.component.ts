@@ -54,6 +54,11 @@ export class ImageUploadComponent {
     const reader = new FileReader();
     return new Promise((resolve, reject) => {
       reader.onload = async () => {
+        let result = reader.result;
+        if (result instanceof ArrayBuffer) {
+          reject("result should be string")
+        }
+
         resolve(reader.result);
       };
       reader.onerror = (error: any) => {
