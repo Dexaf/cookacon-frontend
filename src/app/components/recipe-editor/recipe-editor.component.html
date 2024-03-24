@@ -157,6 +157,26 @@
     {{ "recipes.editor.ingredients.title" | transloco }}
   </h2>
   <!-- TODO - LISTA INGREDIENTI CANCELLABILE, MODIFICABILE E MAGARI DRAGGABILE -->
+  <!-- INGREDIENT LIST -->
+  <section
+    class="flex-center-container"
+    style="flex-wrap: wrap; width: 100%; column-gap: 1rem; margin-bottom: 1rem"
+  >
+    @for (ingredient of ingredients; track $index) {
+      <app-info-card
+        [image]="
+          ingredient.pictureUrl
+            ? providerUrl + ingredient.pictureUrl
+            : ingredient.imageBase64?.toString()
+        "
+        [title]="ingredient.name"
+        [description]="ingredient.qta"
+        [isHorizontal]="false"
+      >
+      </app-info-card>
+    }
+  </section>
+  <!-- FORM -->
   <section>
     <!-- ROW OF 2 -->
     <div
@@ -238,6 +258,26 @@
     {{ "recipes.editor.steps.title-section" | transloco }}
   </h2>
   <!-- TODO - LISTA STEPS CANCELLABILE, MODIFICABILE E MAGARI DRAGGABILE -->
+  <!-- STEPS LIST -->
+  <section
+    class="flex-center-container"
+    style="flex-wrap: wrap; width: 100%; column-gap: 1rem; margin-bottom: 1rem"
+  >
+    @for (step of steps; track $index) {
+      <app-info-card
+        [image]="
+          step.pictureUrl
+            ? providerUrl + step.pictureUrl
+            : step.imageBase64?.toString()
+        "
+        [title]="step.title"
+        [description]="step.description"
+        [isHorizontal]="false"
+      >
+      </app-info-card>
+    }
+  </section>
+  <!-- FORM -->
   <section>
     <!-- ROW OF 2 -->
     <div

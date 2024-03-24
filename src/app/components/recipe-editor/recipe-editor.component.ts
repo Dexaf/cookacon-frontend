@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { customFile, ImageUploadComponent } from '../image-upload/image-upload.component';
 import { InfoCardComponent } from '../info-card/info-card.component';
 import { ingredientDtoOut, stepDtoOut } from '../../models/dtos/out/recipe.dto.out.interface';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-recipe-editor',
@@ -24,6 +25,8 @@ export class RecipeEditorComponent implements OnChanges {
 
   @Input() editMode = false;
   @Input() recipeData?: Recipe;
+
+  providerUrl = environment.providerUrl
 
   recipeTypes = RecipeType;
 
@@ -77,6 +80,8 @@ export class RecipeEditorComponent implements OnChanges {
     }
     const type = Object.keys(this.recipeTypes).find(v => v === recipeData.type)
     this.recipeForm.controls.type.setValue(type ?? "ND");
+    this.ingredients = recipeData.ingredients;
+    this.steps = recipeData.steps;
   }
 
   getIngredientUploadedPhoto(uploadedPictures: customFile[]) {
@@ -101,10 +106,11 @@ export class RecipeEditorComponent implements OnChanges {
 
   addIngredient() {
     this.ingredients.push({
-      name: this.stepsForm.controls.stepTitle.value!,
-      qta: this.stepsForm.controls.stepDescription.value!,
-      imageBase64: this.stepPicture?.value!
+      name: this.ingredientForm.controls.ingredientName.value!,
+      qta: this.ingredientForm.controls.ingredientQta.value!,
+      imageBase64: this.ingredientPicture?.value!
     })
+    this.ingredientForm.reset();
   }
 
   addStep() {
