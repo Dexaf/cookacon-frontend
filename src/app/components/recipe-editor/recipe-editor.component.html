@@ -227,6 +227,7 @@
     <!-- INGREDIENT PICTURE -->
     <div class="entryContainer">
       <app-image-upload
+        #ingredientPictureUpload
         [label]="'recipes.editor.ingredients.picture' | transloco"
         [inputName]="'ingredientPicture'"
         (photoUploaded)="getIngredientUploadedPhoto($event)"
@@ -328,6 +329,7 @@
     <!-- STEPS PICTURE -->
     <div class="entryContainer">
       <app-image-upload
+        #stepPictureUpload
         [label]="'recipes.editor.steps.picture' | transloco"
         [inputName]="'stepPicture'"
         (photoUploaded)="getStepUploadedPhoto($event)"

@@ -73,6 +73,11 @@ export class ImageUploadComponent {
     if (!this.multiple)
       this.disabled = false;
   }
+
+  resetPictures() {
+    this.currentFiles = [];
+    this.disabled = false;
+  }
 }
 
 export interface customFile {

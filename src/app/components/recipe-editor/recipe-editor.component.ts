@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { Recipe } from '../../models/interfaces/recipe.interface';
 import { IconsModule } from '../../icons.module';
 import { TranslocoModule } from '@ngneat/transloco';
@@ -25,6 +25,9 @@ export class RecipeEditorComponent implements OnChanges {
 
   @Input() editMode = false;
   @Input() recipeData?: Recipe;
+
+  @ViewChild("ingredientPictureUpload") ingredientPictureUploadRef!: ImageUploadComponent;
+  @ViewChild("stepPictureUpload") stepPictureUploadRef!: ImageUploadComponent;
 
   providerUrl = environment.providerUrl
 
@@ -111,6 +114,7 @@ export class RecipeEditorComponent implements OnChanges {
       imageBase64: this.ingredientPicture?.value!
     })
     this.ingredientForm.reset();
+    this.ingredientPictureUploadRef.resetPictures()
   }
 
   addStep() {
@@ -119,6 +123,8 @@ export class RecipeEditorComponent implements OnChanges {
       description: this.stepsForm.controls.stepDescription.value!,
       imageBase64: this.stepPicture?.value!
     })
+    this.stepsForm.reset();
+    this.stepPictureUploadRef.resetPictures()
   }
 
   submitRecipeEditForm() {
