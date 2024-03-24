@@ -1,6 +1,9 @@
 <!-- RECIPE DATA -->
 <form [formGroup]="recipeForm" (ngSubmit)="submitRecipeEditForm()">
-  <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
+  <h2
+    class="m-0 color-primary bg-secondary"
+    style="text-align: center; margin-bottom: 2rem; border-radius: 15px"
+  >
     {{ "recipes.editor.recipe-data" | transloco }}
   </h2>
   <section>
@@ -153,7 +156,10 @@
 </form>
 <!-- INGREDIENTS DATA -->
 <form [formGroup]="ingredientForm" (ngSubmit)="addIngredient()">
-  <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
+  <h2
+    class="m-0 color-primary bg-secondary"
+    style="text-align: center; margin-bottom: 2rem; border-radius: 15px"
+  >
     {{ "recipes.editor.ingredients.title" | transloco }}
   </h2>
   <!-- TODO - LISTA INGREDIENTI CANCELLABILE, MODIFICABILE E MAGARI DRAGGABILE -->
@@ -255,7 +261,10 @@
 <br />
 <!-- STEPS DATA -->
 <form [formGroup]="stepsForm" (ngSubmit)="addStep()">
-  <h2 class="m-0 color-second" style="text-align: center; margin-bottom: 2rem">
+  <h2
+    class="m-0 color-primary bg-secondary"
+    style="text-align: center; margin-bottom: 2rem; border-radius: 15px"
+  >
     {{ "recipes.editor.steps.title-section" | transloco }}
   </h2>
   <!-- TODO - LISTA STEPS CANCELLABILE, MODIFICABILE E MAGARI DRAGGABILE -->
