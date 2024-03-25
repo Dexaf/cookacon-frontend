@@ -14,6 +14,8 @@
   >
     @for (step of steps; track $index) {
       <app-info-card
+        [prefix]="'step-card'"
+        [payload]="$index.toString()"
         [image]="
           step.pictureUrl
             ? providerUrl + step.pictureUrl
@@ -22,6 +24,8 @@
         [title]="step.title"
         [description]="step.description"
         [isHorizontal]="false"
+        [actions]="infoCardActions"
+        (onEvent)="infoCardEventHandler($event)"
       >
       </app-info-card>
     }

@@ -5,7 +5,7 @@ import { customFile, ImageUploadComponent } from '../../image-upload/image-uploa
 import { IconsModule } from '../../../icons.module';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { stepDtoOut } from '../../../models/dtos/out/recipe.dto.out.interface';
-import { InfoCardComponent } from '../../info-card/info-card.component';
+import { cardAction, cardEvent, InfoCardComponent } from '../../info-card/info-card.component';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -39,6 +39,14 @@ export class StepFormComponent {
   })
   stepPicture: customFile | null = null;
 
+  infoCardActions: cardAction[] = [
+    {
+      eventName: stepActions.DELETE,
+      hasPayload: true,
+      iconName: "X"
+    }
+  ]
+
   getStepUploadedPhoto(uploadedPictures: customFile[]) {
     if (uploadedPictures[0]) {
       this.stepPicture = uploadedPictures[0];
@@ -58,4 +66,29 @@ export class StepFormComponent {
     this.stepsForm.reset();
     this.stepPictureUploadRef.resetPictures()
   }
+  
+  infoCardEventHandler(event: cardEvent) {
+    switch (event.eventName) {
+      case stepActions.DELETE:
+        let index = event.payload
+        if (!index)
+          return;
+        if (typeof index === "string")
+          index = parseInt(index);
+        this.steps.splice(index, 1);
+        this.steps = [...this.steps]
+        break;
+      case stepActions.DRAG:
+
+        break;
+      case stepActions.MODIFY:
+        break;
+    }
+  }
+}
+
+enum stepActions {
+  DELETE = "delete",
+  DRAG = "drag",
+  MODIFY = "modify"
 }

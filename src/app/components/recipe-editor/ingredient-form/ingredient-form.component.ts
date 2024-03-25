@@ -5,7 +5,7 @@ import { customFile, ImageUploadComponent } from '../../image-upload/image-uploa
 import { IconsModule } from '../../../icons.module';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ingredientDtoOut } from '../../../models/dtos/out/recipe.dto.out.interface';
-import { InfoCardComponent } from '../../info-card/info-card.component';
+import { cardAction, cardEvent, InfoCardComponent } from '../../info-card/info-card.component';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -39,6 +39,14 @@ export class IngredientFormComponent {
   })
   ingredientPicture: customFile | null = null;
 
+  infoCardActions: cardAction[] = [
+    {
+      eventName: ingredientActions.DELETE,
+      hasPayload: true,
+      iconName: "X"
+    }
+  ]
+
   getIngredientUploadedPhoto(uploadedPictures: customFile[]) {
     if (uploadedPictures[0]) {
       this.ingredientPicture = uploadedPictures[0];
@@ -60,4 +68,29 @@ export class IngredientFormComponent {
 
     this.updateIngredients.emit(this.ingredients);
   }
+
+  infoCardEventHandler(event: cardEvent) {
+    switch (event.eventName) {
+      case ingredientActions.DELETE:
+        let index = event.payload
+        if (!index)
+          return;
+        if (typeof index === "string")
+          index = parseInt(index);
+        this.ingredients.splice(index, 1);
+        this.ingredients = [...this.ingredients]
+        break;
+      case ingredientActions.DRAG:
+
+        break;
+      case ingredientActions.MODIFY:
+        break;
+    }
+  }
+}
+
+enum ingredientActions {
+  DELETE = "delete",
+  DRAG = "drag",
+  MODIFY = "modify"
 }
