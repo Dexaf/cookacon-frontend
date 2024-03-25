@@ -1,0 +1,36 @@
+<!-- card  -->
+<section
+  [id]="cardId"
+  [class]="'card ' + (isHorizontal ? 'horizontal' : 'vertical')"
+>
+  @if (image) {
+    <img [src]="image" />
+  }
+  <div class="text-info">
+    @if (title) {
+      <h5 class="m-0">
+        {{ title }}
+      </h5>
+    }
+    @if (description) {
+      <p class="m-0">
+        {{ description }}
+      </p>
+    }
+  </div>
+  <!-- card actions  -->
+  @defer (when (showActions && actions.length > 0)) {
+    @if (showActions && actions.length > 0) {
+      <section style="align-items: start;" class="animated flex-start-container card-action-container">
+        @for (action of actions; track $index) {
+          <div (click)="emitEvent(action.eventName)">
+            <i-feather
+              class="sm-icon clickable animated"
+              [name]="action.iconName"
+            ></i-feather>
+          </div>
+        }
+      </section>
+    }
+  }
+</section>
