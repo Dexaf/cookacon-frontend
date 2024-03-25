@@ -21,16 +21,19 @@
   <!-- card actions  -->
   @defer (when (showActions && actions.length > 0)) {
     @if (showActions && actions.length > 0) {
-      <section style="align-items: start;" class="animated flex-start-container card-action-container">
-        @for (action of actions; track $index) {
+      @for (action of actions; track $index) {
+        <section
+          style="align-items: start"
+          class="animated flex-start-container card-action-container"
+        >
           <div (click)="emitEvent(action.eventName)">
             <i-feather
               class="sm-icon clickable animated"
               [name]="action.iconName"
             ></i-feather>
           </div>
-        }
-      </section>
+        </section>
+      }
     }
   }
 </section>

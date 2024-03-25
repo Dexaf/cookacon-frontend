@@ -15,7 +15,7 @@ export class InfoCardComponent implements OnInit, AfterViewInit {
   @Input() isHorizontal: boolean = true;
   @Input({ required: true }) prefix!: string;
   @Input() payload?: string;
-  @Input() actions: cardAction[] = [{ iconName: "test", eventName: "test" }];
+  @Input() actions: cardAction[] = [];
   @Output() onEvent: EventEmitter<cardEvent> = new EventEmitter();
 
   showActions = false;
@@ -26,12 +26,14 @@ export class InfoCardComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    document.getElementById(this.cardId)?.addEventListener("mouseover", () => {
-      this.showActions = true;
-    })
-    document.getElementById(this.cardId)?.addEventListener("mouseleave", () => {
-      this.showActions = false;
-    })
+    if(this.actions.length > 0) {
+      document.getElementById(this.cardId)?.addEventListener("mouseover", () => {
+        this.showActions = true;
+      })
+      document.getElementById(this.cardId)?.addEventListener("mouseleave", () => {
+        this.showActions = false;
+      })
+    }
   }
 
   emitEvent(eventName: string) {
