@@ -10,11 +10,13 @@ import { customFile, ImageUploadComponent } from '../image-upload/image-upload.c
 import { InfoCardComponent } from '../info-card/info-card.component';
 import { ingredientDtoOut, stepDtoOut } from '../../models/dtos/out/recipe.dto.out.interface';
 import { environment } from '../../../environments/environment';
+import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
+import { StepFormComponent } from './step-form/step-form.component';
 
 @Component({
   selector: 'app-recipe-editor',
   standalone: true,
-  imports: [IconsModule, TranslocoModule, CommonModule, ReactiveFormsModule, ImageUploadComponent, InfoCardComponent, FormsModule],
+  imports: [IconsModule, TranslocoModule, CommonModule, ReactiveFormsModule, IngredientFormComponent, StepFormComponent, ImageUploadComponent, InfoCardComponent, FormsModule],
   templateUrl: './recipe-editor.component.html',
   styleUrls: ['./recipe-editor.component.scss', '../../../styles.scss']
 })
@@ -25,9 +27,6 @@ export class RecipeEditorComponent implements OnChanges {
 
   @Input() editMode = false;
   @Input() recipeData?: Recipe;
-
-  @ViewChild("ingredientPictureUpload") ingredientPictureUploadRef!: ImageUploadComponent;
-  @ViewChild("stepPictureUpload") stepPictureUploadRef!: ImageUploadComponent;
 
   providerUrl = environment.providerUrl
 
@@ -43,29 +42,12 @@ export class RecipeEditorComponent implements OnChanges {
     cookingTimeMinute: [0, [Validators.required, Validators.min(0), Validators.max(59)]],
     type: ["ND", [Validators.required]],
   })
-
-  //ingredient form
-  ingredientForm = this.formGroup.group({
-    ingredientName: [null, [Validators.required]],
-    ingredientQta: [null, [Validators.required]],
-    ingredientPicture: [false, [Validators.requiredTrue]],
-  })
-  ingredientPicture: customFile | null = null;
   ingredients: ingredientDtoOut[] = [];
-
-  //steps form
-  stepsForm = this.formGroup.group({
-    stepTitle: [null, [Validators.required]],
-    stepDescription: [null, [Validators.required]],
-    stepPicture: [false, [Validators.requiredTrue]],
-  })
-  stepPicture: customFile | null = null;
   steps: stepDtoOut[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.editMode && this.recipeData) {
+    if (this.editMode && this.recipeData)
       this.loadRecipeData(this.recipeData)
-    };
   }
 
   loadRecipeData(recipeData: Recipe) {
@@ -87,44 +69,12 @@ export class RecipeEditorComponent implements OnChanges {
     this.steps = recipeData.steps;
   }
 
-  getIngredientUploadedPhoto(uploadedPictures: customFile[]) {
-    if (uploadedPictures[0]) {
-      this.ingredientPicture = uploadedPictures[0];
-      this.ingredientForm.controls.ingredientPicture.setValue(true)
-    } else {
-      this.ingredientPicture = null;
-      this.ingredientForm.controls.ingredientPicture.setValue(false)
-    }
+  updateIngredients(ingredients: ingredientDtoOut[]) {
+    this.ingredients = ingredients;
   }
 
-  getStepUploadedPhoto(uploadedPictures: customFile[]) {
-    if (uploadedPictures[0]) {
-      this.stepPicture = uploadedPictures[0];
-      this.stepsForm.controls.stepPicture.setValue(true)
-    } else {
-      this.stepPicture = null;
-      this.stepsForm.controls.stepPicture.setValue(false)
-    }
-  }
-
-  addIngredient() {
-    this.ingredients.push({
-      name: this.ingredientForm.controls.ingredientName.value!,
-      qta: this.ingredientForm.controls.ingredientQta.value!,
-      imageBase64: this.ingredientPicture?.value!
-    })
-    this.ingredientForm.reset();
-    this.ingredientPictureUploadRef.resetPictures()
-  }
-
-  addStep() {
-    this.steps.push({
-      title: this.stepsForm.controls.stepTitle.value!,
-      description: this.stepsForm.controls.stepDescription.value!,
-      imageBase64: this.stepPicture?.value!
-    })
-    this.stepsForm.reset();
-    this.stepPictureUploadRef.resetPictures()
+  updateSteps(steps: stepDtoOut[]) {
+    this.steps = steps;
   }
 
   submitRecipeEditForm() {

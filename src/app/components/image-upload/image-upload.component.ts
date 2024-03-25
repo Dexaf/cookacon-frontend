@@ -72,11 +72,13 @@ export class ImageUploadComponent {
     this.currentFiles.splice(index, 1);
     if (!this.multiple)
       this.disabled = false;
+    this.photoUploaded.emit(this.currentFiles)
   }
 
   resetPictures() {
     this.currentFiles = [];
     this.disabled = false;
+    this.photoUploaded.emit(this.currentFiles)
   }
 }
 
