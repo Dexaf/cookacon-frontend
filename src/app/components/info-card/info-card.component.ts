@@ -16,7 +16,7 @@ export class InfoCardComponent implements OnInit, AfterViewInit {
   @Input({ required: true }) prefix!: string;
   @Input() payload?: string;
   @Input() actions: cardAction[] = [{ iconName: "test", eventName: "test" }];
-  @Output() eventEmitter: EventEmitter<cardEvent> = new EventEmitter();
+  @Output() onEvent: EventEmitter<cardEvent> = new EventEmitter();
 
   showActions = false;
   cardId = "";
@@ -39,9 +39,9 @@ export class InfoCardComponent implements OnInit, AfterViewInit {
     if (!currentAction)
       throw new Error("no action found in info card " + this.cardId);
     if (currentAction.hasPayload)
-      this.eventEmitter.emit({ eventName, payload: this.payload });
+      this.onEvent.emit({ eventName, payload: this.payload });
     else
-      this.eventEmitter.emit({ eventName });
+      this.onEvent.emit({ eventName });
   }
 }
 
