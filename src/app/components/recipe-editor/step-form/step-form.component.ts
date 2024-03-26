@@ -44,6 +44,11 @@ export class StepFormComponent {
       eventName: stepActions.DELETE,
       hasPayload: true,
       iconName: "X"
+    },
+    {
+      eventName: stepActions.MODIFY,
+      hasPayload: true,
+      iconName: "Edit"
     }
   ]
 
@@ -66,7 +71,7 @@ export class StepFormComponent {
     this.stepsForm.reset();
     this.stepPictureUploadRef.resetPictures()
   }
-  
+
   infoCardEventHandler(event: cardEvent) {
     switch (event.eventName) {
       case stepActions.DELETE:

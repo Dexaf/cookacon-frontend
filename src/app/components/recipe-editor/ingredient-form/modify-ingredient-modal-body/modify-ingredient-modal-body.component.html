@@ -1,36 +1,8 @@
-<!-- INGREDIENTS DATA -->
-<form [formGroup]="ingredientForm" (ngSubmit)="addIngredient()">
-  <h2
-    class="m-0 color-primary bg-secondary"
-    style="text-align: center; margin-bottom: 2rem; border-radius: 15px"
-  >
-    {{ "recipes.editor.ingredients.title" | transloco }}
+<form [formGroup]="ingredientForm" (ngSubmit)="modifyIngredientSubmit()">
+  <h2 class="color-second m-0">
+    {{ "recipes.editor.ingredients.modifyModal.title" | transloco }}
   </h2>
-  <!-- TODO - LISTA INGREDIENTI CANCELLABILE, MODIFICABILE E MAGARI DRAGGABILE -->
-  <!-- INGREDIENT LIST -->
-  <section
-    class="flex-center-container"
-    style="flex-wrap: wrap; width: 100%; column-gap: 1rem; margin-bottom: 1rem"
-  >
-    @for (ingredient of ingredients; track $index) {
-      <app-info-card
-        [prefix]="'ingredient-card'"
-        [image]="
-          ingredient.pictureUrl
-            ? providerUrl + ingredient.pictureUrl
-            : ingredient.imageBase64?.toString()
-        "
-        [title]="ingredient.name"
-        [description]="ingredient.qta"
-        [isHorizontal]="false"
-        [actions]="infoCardActions"
-        [payload]="$index.toString()"
-        (onEvent)="infoCardEventHandler($event)"
-      >
-      </app-info-card>
-    }
-  </section>
-  <!-- FORM -->
+  <br />
   <section>
     <!-- ROW OF 2 -->
     <div
@@ -80,8 +52,12 @@
     </div>
     <!-- INGREDIENT PICTURE -->
     <div class="entryContainer">
+      <img
+        style="width: 200px; height: auto"
+        [src]="providerUrl + ingredientPicture?.value"
+        [alt]="ingredientPicture?.name"
+      />
       <app-image-upload
-        #ingredientPictureUpload
         [label]="'recipes.editor.ingredients.picture' | transloco"
         [inputName]="'ingredientPicture'"
         (photoUploaded)="getIngredientUploadedPhoto($event)"
@@ -100,18 +76,9 @@
         class="button-secondary animated"
         style="display: flex; align-items: center; column-gap: 0.5rem"
       >
-        <i-feather class="sm-icon stroke-second" name="plus"></i-feather>
-        {{ "generics.add" | transloco }}
+        <i-feather class="sm-icon stroke-second" name="save"></i-feather>
+        {{ "recipes.editor.modifyRecipe" | transloco }}
       </button>
     </div>
   </section>
 </form>
-@if (isModifyIngredientModalOpen && ingredientToModify) {
-  <app-modal-wrapper (onModalClose)="isModifyIngredientModalOpen = false">
-    <app-modify-ingredient-modal-body 
-      (modifyIngredient)="modifyIngredient($event)"
-      (closeModal)="isModifyIngredientModalOpen = false"
-      [workedIndex]="workedIndex"
-      [ingredientToUpdate]="ingredientToModify" body> </app-modify-ingredient-modal-body>
-  </app-modal-wrapper>
-}

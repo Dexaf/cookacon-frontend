@@ -43,7 +43,10 @@
         "title": "Ingredienti",
         "picture": "Foto dell'ingrediente",
         "name": "Nome",
-        "qta": "Quantita"
+        "qta": "Quantita",
+        "modifyModal": {
+          "title": "Modifica ingrediente"
+        }
       },
       "steps":{
         "title-section": "Passaggi",

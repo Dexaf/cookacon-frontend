@@ -7,6 +7,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ingredientDtoOut } from '../../../models/dtos/out/recipe.dto.out.interface';
 import { cardAction, cardEvent, InfoCardComponent } from '../../info-card/info-card.component';
 import { environment } from '../../../../environments/environment';
+import { ModalWrapperComponent } from '../../modal-wrapper/modal-wrapper.component';
+import { ModifyIngredientModalBodyComponent } from './modify-ingredient-modal-body/modify-ingredient-modal-body.component';
 
 @Component({
   selector: 'app-ingredient-form',
@@ -17,7 +19,9 @@ import { environment } from '../../../../environments/environment';
     ImageUploadComponent,
     IconsModule,
     InfoCardComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalWrapperComponent,
+    ModifyIngredientModalBodyComponent
   ],
   templateUrl: './ingredient-form.component.html',
   styleUrls: ['./ingredient-form.component.scss', '../../../../styles.scss']
@@ -44,8 +48,16 @@ export class IngredientFormComponent {
       eventName: ingredientActions.DELETE,
       hasPayload: true,
       iconName: "X"
+    },
+    {
+      eventName: ingredientActions.MODIFY,
+      hasPayload: true,
+      iconName: "Edit"
     }
   ]
+  isModifyIngredientModalOpen: boolean = false;
+  ingredientToModify: ingredientDtoOut | null = null;
+  workedIndex: number = -1;
 
   getIngredientUploadedPhoto(uploadedPictures: customFile[]) {
     if (uploadedPictures[0]) {
@@ -70,21 +82,31 @@ export class IngredientFormComponent {
   }
 
   infoCardEventHandler(event: cardEvent) {
+    let index = event.payload
+    if (!index)
+      return;
+    if (typeof index === "string")
+
+      index = parseInt(index);
     switch (event.eventName) {
       case ingredientActions.DELETE:
-        let index = event.payload
-        if (!index)
-          return;
-        if (typeof index === "string")
-          index = parseInt(index);
         this.ingredients.splice(index, 1);
         this.ingredients = [...this.ingredients]
         break;
       case ingredientActions.DRAG:
-
         break;
       case ingredientActions.MODIFY:
+        this.isModifyIngredientModalOpen = true;
+        this.workedIndex = index;
+        this.ingredientToModify = this.ingredients[index];
         break;
+    }
+  }
+
+  modifyIngredient(event: { index: number, ingredient: ingredientDtoOut }) {
+    debugger
+    this.ingredients[event.index] = {
+      ...event.ingredient
     }
   }
 }
