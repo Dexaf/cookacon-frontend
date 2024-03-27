@@ -141,9 +141,25 @@
     </div>
     <!-- MAIN PICTURE UPLOAD -->
     <div class="entryContainer">
+      <img
+        style="
+          height: auto;
+          width: 300px;
+          border-radius: 15px;
+          margin-bottom: 0.5rem;
+        "
+        [src]="
+          recipeMainPicture?.value
+            ? recipeMainPicture?.value
+            : providerUrl + recipeData?.mainPictureUrl
+        "
+        alt=""
+      />
       <app-image-upload
+        #mainPictureUploadRef
         [label]="'recipes.editor.mainPicture' | transloco"
         [inputName]="'mainPicture'"
+        (photoUploaded)="getMainPicture($event)"
       >
       </app-image-upload>
       <ul class="errorContainer">
@@ -153,31 +169,31 @@
       </ul>
     </div>
   </section>
-</form>
-<!-- INGREDIENTS DATA -->
-<app-ingredient-form
-  [ingredients]="ingredients"
-  (updateIngredients)="updateIngredients($event)">
-</app-ingredient-form>
-<br />
-<!-- STEPS DATA -->
-<app-step-form
-  [steps]="steps"
-  (updateSteps)="updateSteps($event)">
-</app-step-form>
-<hr style="margin: 2rem" />
-<div style="margin-top: 2rem" class="flex-center-container">
-  <button
-    class="button-primary animated"
-    style="display: flex; align-items: center; column-gap: 0.5rem"
-    [disabled]="!recipeForm.valid"
+  <!-- INGREDIENTS DATA -->
+  <app-ingredient-form
+    [ingredients]="ingredients"
+    (updateIngredients)="updateIngredients($event)"
   >
-    @if (editMode) {
-      <i-feather class="sm-icon stroke-primary" name="save"></i-feather>
-      {{ "recipes.editor.modifyRecipe" | transloco }}
-    } @else {
-      <i-feather class="sm-icon stroke-primary" name="plus"></i-feather>
-      {{ "recipes.editor.addRecipe" | transloco }}
-    }
-  </button>
-</div>
+  </app-ingredient-form>
+  <br />
+  <!-- STEPS DATA -->
+  <app-step-form [steps]="steps" (updateSteps)="updateSteps($event)">
+  </app-step-form>
+  <hr style="margin: 2rem" />
+  <div style="margin-top: 2rem" class="flex-center-container">
+    <button
+      class="button-primary animated"
+      style="display: flex; align-items: center; column-gap: 0.5rem"
+      [disabled]="!recipeForm.valid"
+      type="submit"
+    >
+      @if (editMode) {
+        <i-feather class="sm-icon stroke-primary" name="save"></i-feather>
+        {{ "recipes.editor.modifyRecipe" | transloco }}
+      } @else {
+        <i-feather class="sm-icon stroke-primary" name="plus"></i-feather>
+        {{ "recipes.editor.addRecipe" | transloco }}
+      }
+    </button>
+  </div>
+</form>

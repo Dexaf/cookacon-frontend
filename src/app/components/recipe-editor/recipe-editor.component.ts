@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, inject } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { Recipe } from '../../models/interfaces/recipe.interface';
 import { IconsModule } from '../../icons.module';
 import { TranslocoModule } from '@ngneat/transloco';
@@ -27,6 +27,7 @@ export class RecipeEditorComponent implements OnChanges {
 
   @Input() editMode = false;
   @Input() recipeData?: Recipe;
+  @ViewChild("mainPictureUploadRef") mainPictureUploadRef!: ImageUploadComponent;
 
   providerUrl = environment.providerUrl
 
@@ -34,7 +35,7 @@ export class RecipeEditorComponent implements OnChanges {
 
   //Recipe form
   recipeForm = this.formGroup.group({
-    mainPicture: [null, [Validators.required]],
+    mainPicture: [false, [Validators.requiredTrue]],
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
     minQta: [1, [Validators.required, Validators.min(1)]],
@@ -44,6 +45,7 @@ export class RecipeEditorComponent implements OnChanges {
   })
   ingredients: ingredientDtoOut[] = [];
   steps: stepDtoOut[] = [];
+  recipeMainPicture: customFile | null = null;
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.editMode && this.recipeData)
@@ -82,6 +84,17 @@ export class RecipeEditorComponent implements OnChanges {
       return
     else {
       console.log("go on");
+    }
+  }
+
+  getMainPicture(uploadedPictures: customFile[]) {
+    if (uploadedPictures[0]) {
+      this.recipeMainPicture = uploadedPictures[0];
+      this.recipeForm.controls.mainPicture.setValue(true)
+      this.mainPictureUploadRef.resetPictures(false);
+    } else {
+      this.recipeMainPicture = null;
+      this.recipeForm.controls.mainPicture.setValue(false)
     }
   }
 
