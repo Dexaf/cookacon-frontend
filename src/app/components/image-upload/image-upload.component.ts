@@ -75,10 +75,11 @@ export class ImageUploadComponent {
     this.photoUploaded.emit(this.currentFiles)
   }
 
-  resetPictures() {
+  resetPictures(emit: boolean = true) {
     this.currentFiles = [];
     this.disabled = false;
-    this.photoUploaded.emit(this.currentFiles)
+    if (emit)
+      this.photoUploaded.emit(this.currentFiles)
   }
 }
 
