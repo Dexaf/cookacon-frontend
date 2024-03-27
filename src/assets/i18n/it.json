@@ -52,8 +52,10 @@
         "title-section": "Passaggi",
         "picture": "Foto del passaggio",
         "title": "Titolo",
-        "description": "Descrizione"
-
+        "description": "Descrizione",
+        "modifyModal": {
+          "title": "Modifica passaggio"
+        }
       }
     },
     "types": {

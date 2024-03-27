@@ -30,7 +30,6 @@ export class ModifyIngredientModalBodyComponent implements OnChanges {
     ingredientQta: ["", [Validators.required]],
     ingredientPicture: [false, [Validators.requiredTrue]],
   })
-
   ingredientPicture: customFile | null = null;
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -46,9 +45,7 @@ export class ModifyIngredientModalBodyComponent implements OnChanges {
     }
   }
 
-  getIngredientUploadedPhoto(uploadedPictures: customFile[]) {
-    //TODO - why not called?
-    debugger
+  uploadNewPicture(uploadedPictures: customFile[]) {
     if (uploadedPictures[0]) {
       this.ingredientPicture = uploadedPictures[0];
       this.ingredientForm.controls.ingredientPicture.setValue(true)

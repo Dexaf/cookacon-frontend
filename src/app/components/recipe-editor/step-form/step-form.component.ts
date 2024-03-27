@@ -7,6 +7,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { stepDtoOut } from '../../../models/dtos/out/recipe.dto.out.interface';
 import { cardAction, cardEvent, InfoCardComponent } from '../../info-card/info-card.component';
 import { environment } from '../../../../environments/environment';
+import { ModifyStepModalBodyComponent } from './modify-step-modal-body/modify-step-modal-body.component';
+import { ModalWrapperComponent } from '../../modal-wrapper/modal-wrapper.component';
 
 @Component({
   selector: 'app-step-form',
@@ -17,7 +19,9 @@ import { environment } from '../../../../environments/environment';
     ImageUploadComponent,
     IconsModule,
     InfoCardComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModifyStepModalBodyComponent,
+    ModalWrapperComponent
   ],
   templateUrl: './step-form.component.html',
   styleUrls: ['./step-form.component.scss', '../../../../styles.scss']
@@ -51,6 +55,9 @@ export class StepFormComponent {
       iconName: "Edit"
     }
   ]
+  isModifyStepModalOpen: boolean = false;
+  stepToModify: stepDtoOut | null = null;
+  workedIndex: number = -1;
 
   getStepUploadedPhoto(uploadedPictures: customFile[]) {
     if (uploadedPictures[0]) {
@@ -70,16 +77,19 @@ export class StepFormComponent {
     })
     this.stepsForm.reset();
     this.stepPictureUploadRef.resetPictures()
+
+    this.updateSteps.emit(this.steps);
   }
 
   infoCardEventHandler(event: cardEvent) {
+    let index = event.payload
+    if (!index)
+      return;
+    if (typeof index === "string")
+      index = parseInt(index);
+
     switch (event.eventName) {
       case stepActions.DELETE:
-        let index = event.payload
-        if (!index)
-          return;
-        if (typeof index === "string")
-          index = parseInt(index);
         this.steps.splice(index, 1);
         this.steps = [...this.steps]
         break;
@@ -87,7 +97,16 @@ export class StepFormComponent {
 
         break;
       case stepActions.MODIFY:
+        this.isModifyStepModalOpen = true;
+        this.workedIndex = index;
+        this.stepToModify = this.steps[index];
         break;
+    }
+  }
+
+  modifyStep(event: { index: number, step: stepDtoOut }) {
+    this.steps[event.index] = {
+      ...event.step
     }
   }
 }

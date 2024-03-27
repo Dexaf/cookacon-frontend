@@ -86,8 +86,8 @@ export class IngredientFormComponent {
     if (!index)
       return;
     if (typeof index === "string")
-
       index = parseInt(index);
+    
     switch (event.eventName) {
       case ingredientActions.DELETE:
         this.ingredients.splice(index, 1);
@@ -104,7 +104,6 @@ export class IngredientFormComponent {
   }
 
   modifyIngredient(event: { index: number, ingredient: ingredientDtoOut }) {
-    debugger
     this.ingredients[event.index] = {
       ...event.ingredient
     }

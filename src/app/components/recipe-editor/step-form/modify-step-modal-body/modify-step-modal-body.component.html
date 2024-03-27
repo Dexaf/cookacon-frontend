@@ -1,29 +1,29 @@
-<form [formGroup]="ingredientForm" (ngSubmit)="modifyIngredientSubmit()">
+<!-- STEPS DATA -->
+<form [formGroup]="stepForm" (ngSubmit)="modifyIngredientSubmit()">
   <h2
     class="m-0 color-primary bg-secondary"
     style="text-align: center; margin-bottom: 2rem; border-radius: 15px"
   >
-    {{ "recipes.editor.ingredients.modifyModal.title" | transloco }}
+    {{ "recipes.editor.steps.modifyModal.title" | transloco }}
   </h2>
-  <br />
   <section>
     <!-- ROW OF 2 -->
     <div
       class="flex-center-container"
       style="flex-wrap: wrap; width: 100%; column-gap: 1rem"
     >
-      <!-- NAME -->
+      <!-- TITLE -->
       <div class="entryContainer">
         <div class="inputContainer row-input">
-          <label for="ingredient-name">
+          <label for="step-title">
             <i-feather name="book" class="md-icon stroke-second" />
-            {{ "recipes.editor.ingredients.name" | transloco }}
+            {{ "recipes.editor.steps.title" | transloco }}
           </label>
           <input
             type="text"
-            name="ingredient-name"
-            id="ingredient-name"
-            formControlName="ingredientName"
+            name="step-title"
+            id="step-title"
+            formControlName="stepTitle"
           />
         </div>
         <ul class="errorContainer">
@@ -32,18 +32,18 @@
           </li>
         </ul>
       </div>
-      <!-- QTA -->
+      <!-- DESCRIPTION -->
       <div class="entryContainer">
         <div class="inputContainer row-input">
-          <label for="qta">
-            <i-feather name="archive" class="md-icon stroke-second" />
-            {{ "recipes.editor.ingredients.qta" | transloco }}
+          <label for="step-description">
+            <i-feather name="book-open" class="md-icon stroke-second" />
+            {{ "recipes.editor.steps.description" | transloco }}
           </label>
           <input
             type="text"
-            name="qta"
-            id="qta"
-            formControlName="ingredientQta"
+            name="step-description"
+            id="step-description"
+            formControlName="stepDescription"
           />
         </div>
         <ul class="errorContainer">
@@ -53,11 +53,12 @@
         </ul>
       </div>
     </div>
-    <!-- INGREDIENT PICTURE -->
+    <!-- STEPS PICTURE -->
     <div class="entryContainer">
       <app-image-upload
-        [label]="'recipes.editor.ingredients.picture' | transloco"
-        [inputName]="'ingredientPicture'"
+        #stepPictureUpload
+        [label]="'recipes.editor.steps.picture' | transloco"
+        [inputName]="'stepPicture'"
         (photoUploaded)="uploadNewPicture($event)"
       >
       </app-image-upload>
@@ -70,7 +71,7 @@
     <!-- BOTTONE AGGIUNGI -->
     <div class="flex-center-container">
       <button
-        [disabled]="!ingredientForm.valid"
+        [disabled]="!stepForm.valid"
         class="button-secondary animated"
         style="display: flex; align-items: center; column-gap: 0.5rem"
       >

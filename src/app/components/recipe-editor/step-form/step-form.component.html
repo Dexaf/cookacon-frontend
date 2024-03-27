@@ -106,3 +106,12 @@
     </div>
   </section>
 </form>
+@if (isModifyStepModalOpen && stepToModify) {
+  <app-modal-wrapper (onModalClose)="isModifyStepModalOpen = false">
+    <app-modify-step-modal-body 
+      (modifyStep)="modifyStep($event)"
+      (closeModal)="isModifyStepModalOpen = false"
+      [workedIndex]="workedIndex"
+      [stepToUpdate]="stepToModify" body> </app-modify-step-modal-body>
+  </app-modal-wrapper>
+}
