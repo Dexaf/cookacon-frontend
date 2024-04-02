@@ -25,3 +25,14 @@ export interface ingredientDtoOut {
   imageBase64?: string | ArrayBuffer,
   pictureUrl?: string
 }
+
+export interface RecipeDtoOut {
+  title: string
+  description: string
+  ingredients: ingredientDtoOut[]
+  minQta: number
+  steps: stepDtoOut[]
+  type: string
+  cookingTime: string
+  imageBase64?: string | ArrayBuffer
+}

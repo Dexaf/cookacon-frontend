@@ -8,10 +8,11 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { ActivatedRoute, Router } from '@angular/router';
 import { customFile, ImageUploadComponent } from '../image-upload/image-upload.component';
 import { InfoCardComponent } from '../info-card/info-card.component';
-import { ingredientDtoOut, stepDtoOut } from '../../models/dtos/out/recipe.dto.out.interface';
+import { ingredientDtoOut, RecipeDtoOut, stepDtoOut } from '../../models/dtos/out/recipe.dto.out.interface';
 import { environment } from '../../../environments/environment';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 import { StepFormComponent } from './step-form/step-form.component';
+import { RecipesService } from '../../services/recipes.service';
 
 @Component({
   selector: 'app-recipe-editor',
@@ -23,6 +24,7 @@ import { StepFormComponent } from './step-form/step-form.component';
 export class RecipeEditorComponent implements OnChanges {
   formGroup = inject(FormBuilder);
   activedRoute = inject(ActivatedRoute);
+  recipesService = inject(RecipesService);
   router = inject(Router);
 
   @Input() editMode = false;
@@ -53,8 +55,7 @@ export class RecipeEditorComponent implements OnChanges {
   }
 
   loadRecipeData(recipeData: Recipe) {
-    //TODO - pass data to app-image-upload
-    //this.recipeForm.controls.mainPicture.setValue(this.recipeData?.mainPictureUrl ?? null);
+    this.recipeForm.controls.mainPicture.setValue(this.recipeData?.mainPictureUrl ? true : false);
     this.recipeForm.controls.title.setValue(recipeData?.title ?? null);
     this.recipeForm.controls.description.setValue(recipeData?.description ?? null);
     this.recipeForm.controls.minQta.setValue(recipeData?.minQta ?? 1);
@@ -83,7 +84,18 @@ export class RecipeEditorComponent implements OnChanges {
     if (!this.isFormValid())
       return
     else {
-      console.log("go on");
+      const recipeDtoOut: RecipeDtoOut = {
+        ingredients: this.ingredients,
+        steps: this.steps,
+        title: this.recipeForm.controls.title.value!,
+        description: this.recipeForm.controls.description.value!,
+        minQta: this.recipeForm.controls.minQta.value!,
+        type: this.recipeForm.controls.type.value!,
+        cookingTime: `${this.recipeForm.controls.cookingTime.value} : ${this.recipeForm.controls.cookingTimeMinute.value}`,
+        imageBase64: this.recipeMainPicture?.value ?? undefined,
+      }
+
+      this.recipesService.updateRecipeRoutine(recipeDtoOut);
     }
   }
 
