@@ -12,7 +12,7 @@ export class ToastService {
   private readonly currentToastData = signal<dynamicComponent>({ component: ToastComponent, inputs: {} });
   readonly currentToastData$ = toObservable(this.currentToastData);
 
-  makeToast(type: toastType, title: string, body: string, timer: number) {
+  makeToast(type: toastType, title: string, body: string, timer: number = 2000) {
     this.isToastShowing.set(true);
 
     this.currentToastData.update((ctd => {

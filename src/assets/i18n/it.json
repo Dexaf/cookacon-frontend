@@ -39,6 +39,8 @@
       "minQta": "Per quante persone",
       "cookingTime": "Tempo di cottura",
       "type": "Tipo di portata",
+      "modSuccess": "Modifiche salvate!",
+      "insSuccess": "Ricetta salvata!",
       "ingredients":{
         "title": "Ingredienti",
         "picture": "Foto dell'ingrediente",
@@ -87,7 +89,10 @@
       "MISSING_PASSWORD_COPY": "Devi confermare la password.",
       "PASSWORDS_NOT_EQUAL": "Le password non corrispondono.",
       "USER_NO_MATCH": "Lo user non sembra esistere.",
-      "WRONG_PASSWORD": "La password non e' corretta."
+      "WRONG_PASSWORD": "La password non e' corretta.",
+      "QTA_FORMAT_WRONG": "Una quantita' e' malformata",
+      "RECIPE_TITLE_DUPLICATE_FOR_ACCOUNT": "Il titolo della ricetta e' gia' usato nel tuo account",
+      "COOKING_TIME_MALFORMED": "Il tempo di cottura e' malformato"
     }
   },
   "genericErrors": {

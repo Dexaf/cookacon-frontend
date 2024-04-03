@@ -33,7 +33,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
   isLoadingEditorState: boolean = false;
 
-
   ngOnInit(): void {
     const storeSub = this.store.select(getUserData$)
       .pipe(filter(user => user.id !== null))

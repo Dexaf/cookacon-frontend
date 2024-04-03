@@ -73,7 +73,7 @@ export class IngredientFormComponent {
     this.ingredients.push({
       name: this.ingredientForm.controls.ingredientName.value!,
       qta: this.ingredientForm.controls.ingredientQta.value!,
-      imageBase64: this.ingredientPicture?.value!
+      pictureBase64: this.ingredientPicture?.value!
     })
     this.ingredientForm.reset();
     this.ingredientPictureUploadRef.resetPictures();

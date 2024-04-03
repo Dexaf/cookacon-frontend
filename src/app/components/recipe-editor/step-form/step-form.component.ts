@@ -73,7 +73,7 @@ export class StepFormComponent {
     this.steps.push({
       title: this.stepsForm.controls.stepTitle.value!,
       description: this.stepsForm.controls.stepDescription.value!,
-      imageBase64: this.stepPicture?.value!
+      pictureBase64: this.stepPicture?.value!
     })
     this.stepsForm.reset();
     this.stepPictureUploadRef.resetPictures()

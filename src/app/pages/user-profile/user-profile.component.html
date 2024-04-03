@@ -8,6 +8,9 @@
   </section>
   <!-- DASHBOARD -->
   <section class="user-dashboard">
+    <div id="user-commands">
+      <button class="button button-primary" [routerLink]="'/recipe/editor'">{{'recipes.editor.addRecipe' | transloco}}</button>
+    </div>
     <hr>
     <app-recipes-list [canModify]="true"></app-recipes-list>
   </section>

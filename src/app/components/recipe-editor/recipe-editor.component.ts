@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { Recipe } from '../../models/interfaces/recipe.interface';
 import { IconsModule } from '../../icons.module';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { RecipeType } from '../../models/enums/recipeTypes.enum';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -13,6 +13,8 @@ import { environment } from '../../../environments/environment';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 import { StepFormComponent } from './step-form/step-form.component';
 import { RecipesService } from '../../services/recipes.service';
+import { ToastService } from '../../services/toast.service';
+import { toastType } from '../../models/enums/toastType.enum';
 
 @Component({
   selector: 'app-recipe-editor',
@@ -25,6 +27,8 @@ export class RecipeEditorComponent implements OnChanges {
   formGroup = inject(FormBuilder);
   activedRoute = inject(ActivatedRoute);
   recipesService = inject(RecipesService);
+  toastService = inject(ToastService);
+  translocoService = inject(TranslocoService);
   router = inject(Router);
 
   @Input() editMode = false;
@@ -61,7 +65,6 @@ export class RecipeEditorComponent implements OnChanges {
     this.recipeForm.controls.minQta.setValue(recipeData?.minQta ?? 1);
 
     const times = recipeData?.cookingTime.split(":");
-
     if (times && times.length > 0) {
       this.recipeForm.controls.cookingTime.setValue(parseInt(times[0]) ?? 0);
       this.recipeForm.controls.cookingTimeMinute.setValue(parseInt(times[1]) ?? 0);
@@ -84,6 +87,8 @@ export class RecipeEditorComponent implements OnChanges {
     if (!this.isFormValid())
       return
     else {
+      const hours = this.recipeForm.controls.cookingTime.value!.toString().length === 1 ? ('0' + this.recipeForm.controls.cookingTime.value?.toString()) : this.recipeForm.controls.cookingTime.value?.toString()
+      const minutes = this.recipeForm.controls.cookingTimeMinute.value!.toString().length === 1 ? ('0' + this.recipeForm.controls.cookingTimeMinute.value?.toString()) : this.recipeForm.controls.cookingTimeMinute.value?.toString()
       const recipeDtoOut: RecipeDtoOut = {
         ingredients: this.ingredients,
         steps: this.steps,
@@ -91,11 +96,23 @@ export class RecipeEditorComponent implements OnChanges {
         description: this.recipeForm.controls.description.value!,
         minQta: this.recipeForm.controls.minQta.value!,
         type: this.recipeForm.controls.type.value!,
-        cookingTime: `${this.recipeForm.controls.cookingTime.value} : ${this.recipeForm.controls.cookingTimeMinute.value}`,
-        imageBase64: this.recipeMainPicture?.value ?? undefined,
+        cookingTime: `${hours}:${minutes}`,
+        mainPictureBase64: this.recipeMainPicture?.value ?? undefined,
       }
-
-      this.recipesService.updateRecipeRoutine(recipeDtoOut);
+      if (this.editMode)
+        this.recipesService.updateRecipeRoutine(recipeDtoOut, this.recipeData!._id)
+          .subscribe(() => {
+            this.toastService.makeToast(toastType.Success, this.translocoService.translate('recipes.editor.success'), '')
+            localStorage.removeItem('currentRecipe');
+            this.router.navigate(['/user/own']);
+          });
+      else {
+        this.recipesService.addRecipe(recipeDtoOut)
+          .subscribe(() => {
+            this.toastService.makeToast(toastType.Success, this.translocoService.translate('recipes.editor.insSuccess'), '')
+            this.router.navigate(['/user/own']);
+          });
+      }
     }
   }
 

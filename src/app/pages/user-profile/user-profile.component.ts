@@ -4,13 +4,17 @@ import { RecipesListComponent } from '../../components/recipes-list/recipes-list
 import { Store } from '@ngrx/store';
 import { AppState, UserData } from '@store/interfaces';
 import { getUserData$ } from '@store/selectors';
+import { TranslocoModule } from '@ngneat/transloco';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
   imports: [
     UserDataProfileCardComponent,
-    RecipesListComponent
+    RecipesListComponent,
+    TranslocoModule,
+    RouterModule
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'

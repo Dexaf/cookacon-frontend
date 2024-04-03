@@ -40,7 +40,7 @@ export class ModifyIngredientModalBodyComponent implements OnChanges {
 
       this.ingredientPicture = {
         name: this.ingredientToUpdate.name,
-        value: this.ingredientToUpdate.imageBase64 ?? this.ingredientToUpdate.pictureUrl!
+        value: this.ingredientToUpdate.pictureBase64 ?? this.ingredientToUpdate.pictureUrl!
       };
     }
   }

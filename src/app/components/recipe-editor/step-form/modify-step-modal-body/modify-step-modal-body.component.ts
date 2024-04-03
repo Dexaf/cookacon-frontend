@@ -39,7 +39,7 @@ export class ModifyStepModalBodyComponent implements OnChanges {
 
       this.stepPicture = {
         name: this.stepToUpdate.title,
-        value: this.stepToUpdate.imageBase64 ?? this.stepToUpdate.pictureUrl!
+        value: this.stepToUpdate.pictureBase64 ?? this.stepToUpdate.pictureUrl!
       };
     }
   }

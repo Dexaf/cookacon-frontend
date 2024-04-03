@@ -1,5 +1,5 @@
 @if (recipes.length > 0) {
-  <section style="display: flex; flex-direction: row; row-gap: 1.5rem">
+  <section style="display: flex; flex-direction: column; row-gap: 1.5rem">
     @for (recipe of recipes; track recipe._id) {
       <app-recipe-card 
         [recipe]="recipe"

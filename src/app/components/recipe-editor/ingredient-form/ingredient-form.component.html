@@ -18,7 +18,7 @@
         [image]="
           ingredient.pictureUrl
             ? providerUrl + ingredient.pictureUrl
-            : ingredient.imageBase64?.toString()
+            : ingredient.pictureBase64?.toString()
         "
         [title]="ingredient.name"
         [description]="ingredient.qta"

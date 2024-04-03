@@ -8,7 +8,7 @@ export interface stepDtoOut {
   _id?: string
   title: string
   description: string
-  imageBase64?: string | ArrayBuffer,
+  pictureBase64?: string | ArrayBuffer,
   pictureUrl?: string
 }
 
@@ -22,7 +22,7 @@ export interface ingredientDtoOut {
   _id?: string
   name: string
   qta: string
-  imageBase64?: string | ArrayBuffer,
+  pictureBase64?: string | ArrayBuffer,
   pictureUrl?: string
 }
 
@@ -34,5 +34,5 @@ export interface RecipeDtoOut {
   steps: stepDtoOut[]
   type: string
   cookingTime: string
-  imageBase64?: string | ArrayBuffer
+  mainPictureBase64?: string | ArrayBuffer
 }
