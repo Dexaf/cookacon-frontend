@@ -26,11 +26,14 @@
             formControlName="stepTitle"
           />
         </div>
-        <ul class="errorContainer">
-          <li class="errorMessage m-0">
-            {{ "recipes.editor.ingredients.name" | transloco }}
-          </li>
-        </ul>
+        <!-- Error Container -->
+        @if (stepForm.get('stepTitle')?.errors && stepForm.get('stepTitle')?.touched) {
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.ingredients.name" | transloco }}
+            </li>
+          </ul>
+        }
       </div>
       <!-- DESCRIPTION -->
       <div class="entryContainer">
@@ -46,11 +49,14 @@
             formControlName="stepDescription"
           />
         </div>
-        <ul class="errorContainer">
-          <li class="errorMessage m-0">
-            {{ "recipes.editor.title" | transloco }}
-          </li>
-        </ul>
+        <!-- Error Container -->
+        @if (stepForm.get('stepDescription')?.errors && stepForm.get('stepDescription')?.touched) {
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.title" | transloco }}
+            </li>
+          </ul>
+        }
       </div>
     </div>
     <!-- STEPS PICTURE -->
@@ -62,11 +68,14 @@
         (photoUploaded)="uploadNewPicture($event)"
       >
       </app-image-upload>
-      <ul class="errorContainer">
-        <li class="errorMessage m-0">
-          {{ "signInModal.errors.username" | transloco }}
-        </li>
-      </ul>
+      <!-- Error Container -->
+      @if (stepForm.get('stepPictureModify')?.errors && stepForm.get('stepPictureModify')?.touched) {
+        <ul class="errorContainer">
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.username" | transloco }}
+          </li>
+        </ul>
+      }
     </div>
     <!-- BOTTONE AGGIUNGI -->
     <div class="flex-center-container">

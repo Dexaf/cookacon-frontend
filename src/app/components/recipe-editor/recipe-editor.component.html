@@ -11,22 +11,30 @@
     <div class="entryContainer">
       <div class="inputContainer row-input">
         <label for="title">
-          <i-feather name="book" class="md-icon stroke-second" />
+          <i-feather name="book" class="md-icon stroke-second"></i-feather>
           {{ "recipes.editor.title" | transloco }}
         </label>
         <input type="text" name="title" id="title" formControlName="title" />
       </div>
-      <ul class="errorContainer">
-        <li class="errorMessage m-0">
-          {{ "recipes.editor.title" | transloco }}
-        </li>
-      </ul>
+      <!-- Error Container -->
+      @if (
+        recipeForm.get("title")?.errors &&
+        recipeForm.get("title")?.touched &&
+        recipeForm.get("title")?.dirty
+      ) {
+        <ul class="errorContainer">
+          <li class="errorMessage m-0">
+            {{ "recipes.editor.title" | transloco }}
+          </li>
+        </ul>
+      }
     </div>
+
     <!-- DESCRIPTION -->
     <div class="entryContainer">
       <div class="inputContainer row-input" style="width: 100%">
         <label for="description">
-          <i-feather name="book-open" class="md-icon stroke-second" />
+          <i-feather name="book-open" class="md-icon stroke-second"></i-feather>
           {{ "recipes.editor.description" | transloco }}
         </label>
         <textarea
@@ -36,15 +44,22 @@
           id="description"
           formControlName="description"
           style="width: 100%"
-        >
-        </textarea>
+        ></textarea>
       </div>
-      <ul class="errorContainer">
-        <li class="errorMessage m-0">
-          {{ "recipes.editor.description" | transloco }}
-        </li>
-      </ul>
+      <!-- Error Container -->
+      @if (
+        recipeForm.get("description")?.errors &&
+        recipeForm.get("description")?.touched &&
+        recipeForm.get("description")?.dirty
+      ) {
+        <ul class="errorContainer">
+          <li class="errorMessage m-0">
+            {{ "recipes.editor.description" | transloco }}
+          </li>
+        </ul>
+      }
     </div>
+
     <!-- ROW OF 3 -->
     <div
       class="flex-center-container"
@@ -54,7 +69,7 @@
       <div class="entryContainer">
         <div class="inputContainer row-input">
           <label for="minQta">
-            <i-feather name="users" class="md-icon stroke-second" />
+            <i-feather name="users" class="md-icon stroke-second"></i-feather>
             {{ "recipes.editor.minQta" | transloco }}
           </label>
           <input
@@ -65,19 +80,28 @@
             formControlName="minQta"
           />
         </div>
-        <ul class="errorContainer">
-          <li class="errorMessage m-0">
-            {{ "recipes.editor.minQta" | transloco }}
-          </li>
-        </ul>
+        <!-- Error Container -->
+        @if (
+          recipeForm.get("minQta")?.errors &&
+          recipeForm.get("minQta")?.touched &&
+          recipeForm.get("minQta")?.dirty
+        ) {
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.minQta" | transloco }}
+            </li>
+          </ul>
+        }
       </div>
+
       <!-- TIME OF COOKING -->
       <div class="entryContainer">
         <div class="inputContainer row-input">
           <label for="cookingTimeHour">
-            <i-feather name="clock" class="md-icon stroke-second" />
+            <i-feather name="clock" class="md-icon stroke-second"></i-feather>
             {{ "recipes.editor.cookingTime" | transloco }}
           </label>
+          <!-- Hour and Minute Inputs -->
           <div class="flex-center-container" style="column-gap: 1rem">
             <!-- HOURS -->
             <div class="inputContainer">
@@ -108,17 +132,25 @@
             </div>
           </div>
         </div>
-        <ul class="errorContainer">
-          <li class="errorMessage m-0">
-            {{ "recipes.editor.cookingTime" | transloco }}
-          </li>
-        </ul>
+        <!-- Error Container -->
+        @if (
+          recipeForm.get("cookingTime")?.errors &&
+          recipeForm.get("cookingTime")?.touched &&
+          recipeForm.get("cookingTime")?.dirty
+        ) {
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.cookingTime" | transloco }}
+            </li>
+          </ul>
+        }
       </div>
+
       <!-- TYPE -->
       <div class="entryContainer">
         <div class="inputContainer row-input">
           <label for="type">
-            <i-feather name="coffee" class="md-icon stroke-second" />
+            <i-feather name="coffee" class="md-icon stroke-second"></i-feather>
             {{ "recipes.editor.type" | transloco }}
           </label>
           <select name="type" id="type" formControlName="type">
@@ -132,13 +164,21 @@
             }
           </select>
         </div>
-        <ul class="errorContainer">
-          <li class="errorMessage m-0">
-            {{ "recipes.editor.type" | transloco }}
-          </li>
-        </ul>
+        <!-- Error Container -->
+        @if (
+          recipeForm.get("type")?.errors &&
+          recipeForm.get("type")?.touched &&
+          recipeForm.get("type")?.dirty
+        ) {
+          <ul class="errorContainer">
+            <li class="errorMessage m-0">
+              {{ "recipes.editor.type" | transloco }}
+            </li>
+          </ul>
+        }
       </div>
     </div>
+
     <!-- MAIN PICTURE UPLOAD -->
     <div class="entryContainer">
       <img
@@ -160,13 +200,19 @@
         [label]="'recipes.editor.mainPicture' | transloco"
         [inputName]="'mainPicture'"
         (photoUploaded)="getMainPicture($event)"
-      >
-      </app-image-upload>
-      <ul class="errorContainer">
-        <li class="errorMessage m-0">
-          {{ "signInModal.errors.username" | transloco }}
-        </li>
-      </ul>
+      ></app-image-upload>
+      <!-- Error Container -->
+      @if (
+        recipeForm.get("mainPicture")?.errors &&
+        recipeForm.get("mainPicture")?.touched &&
+        recipeForm.get("mainPicture")?.dirty
+      ) {
+        <ul class="errorContainer">
+          <li class="errorMessage m-0">
+            {{ "signInModal.errors.username" | transloco }}
+          </li>
+        </ul>
+      }
     </div>
   </section>
   <!-- INGREDIENTS DATA -->
@@ -184,7 +230,9 @@
     <button
       class="button-primary animated"
       style="display: flex; align-items: center; column-gap: 0.5rem"
-      [disabled]="!(recipeForm.valid && ingredients.length > 0 && steps.length > 0)"
+      [disabled]="
+        !(recipeForm.valid && ingredients.length > 0 && steps.length > 0)
+      "
       type="submit"
     >
       @if (editMode) {
